@@ -1,0 +1,114 @@
+{
+  "name": "nodejs-vuejs-mysql-boilerplate-api",
+  "version": "1.0.0",
+  "description": "API for Node.js + Vue.js boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon app/server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js --progress --profile",
+    "lint": "eslint ./app --fix",
+    "test": "cross-env NODE_ENV=test jest --coverage --detectOpenHandles --runInBand",
+    "migrate:create": "db-migrate create",
+    "migrate:up": "db-migrate up --verbose",
+    "migrate:down": "db-migrate down --verbose",
+    "migrate:reset": "db-migrate reset --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisleekr/nodejs-vuejs-mysql-boilerplate.git"
+  },
+  "keywords": [
+    "Node.js",
+    "REST API",
+    "boilerplate"
+  ],
+  "author": "Chris Lee <git@chrislee.kr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisleekr/nodejs-vuejs-mysql-boilerplate/issues"
+  },
+  "homepage": "https://github.com/chrisleekr/nodejs-vuejs-mysql-boilerplate#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.2",
+    "bunyan": "^1.8.15",
+    "bunyan-middleware": "^1.0.1",
+    "compression": "^1.7.4",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "db-migrate": "^0.11.13",
+    "db-migrate-mysql": "^2.2.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "nodemailer": "^6.7.2",
+    "npm-check-updates": "^12.4.0",
+    "promise-mysql": "^5.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.19",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.4",
+    "lodash-webpack-plugin": "^0.11.6",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "resetMocks": true,
+    "globalSetup": "./jest.setup.js",
+    "collectCoverageFrom": [
+      "app/**/*.js",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!**/coverage/**"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
