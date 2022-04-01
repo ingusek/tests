@@ -1,5 +1,5 @@
 {
-  "apiUrl": "http://localhost/api",
+  "apiUrl": "http://todo.local/api",
   "format": {
     "dateTime": "YYYY-MM-DD HH:MM:SS"
   }

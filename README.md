@@ -55,12 +55,12 @@ Once docker containers are up, then you can access services with below URL.
 
 | Service            | Endpoint                                                         |
 | ------------------ | ---------------------------------------------------------------- |
-| API                | [http://localhost/api](http://localhost/api)                     |
-| Frontend - Nuxt.js | [http://localhost/frontend-nuxt](http://localhost/frontend-nuxt) |
-| Frontend - Vue.js  | [http://localhost/frontend-vue](http://localhost/frontend-vue)   |
-| Backend            | [http://localhost/backend](http://localhost/backend)             |
-| Mailhog            | [http://localhost/mailhog](http://localhost/mailhog)             |
-| MySQL              | localhost:3307                                                   |
+| API                | [http://todo.local/api](http://todo.local/api)                     |
+| Frontend - Nuxt.js | [http://todo.local/frontend-nuxt](http://todo.local/frontend-nuxt) |
+| Frontend - Vue.js  | [http://todo.local/frontend-vue](http://todo.local/frontend-vue)   |
+| Backend            | [http://todo.local/backend](http://todo.local/backend)             |
+| Mailhog            | [http://todo.local/mailhog](http://todo.local/mailhog)             |
+| MySQL              | mysql.local:3307                                                   |
 
 There are three users in the database initially. You can use them to login Frontend/Backend.
 
@@ -106,7 +106,7 @@ cd backend
 npm run serve
 ```
 
-Then access Frontend - Nuxt.js with `http://localhost:3000`, Frontend - Vue.js with `http://localhost:8080` and Backend
+Then access Frontend - Vue.js with `http://localhost:8080` and Backend
 with `http://localhost:8081` via your browser.
 
 ### Mailhog
@@ -114,7 +114,7 @@ with `http://localhost:8081` via your browser.
 Currently, API is configured to point Mailhog to send an email. Any email sent by the API can be viewed in Mailhog web
 interface.
 
-Access via your browser `http://localhost/mailhog`
+Access via your browser `http://todo.local/mailhog`
 
 ### MySQL
 
@@ -157,3 +157,51 @@ MySQL port is mapped to 3307.
 
 - [x] Unit tests
 - [x] E2E tests
+
+## Tests
+/usr/bin/chromedriver --version
+/opt/google/chrome/chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --window-size=1920,1080 --log-level=ALL
+/opt/google/chrome/chrome --no-sandbox --disable-gpu --log-level=ALL --remote-debugging-port=9222 --window-size=1920,1080
+
+Robot:
+http://localhost:8080/vnc.html
+
+Selenium:
+http://localhost:7900/
+
+
+## Add user
+```
+curl --location --request POST 'http://todo.local/api/user/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "ingusek",
+    "email": "ingus@wp.pl",
+    "password": "test1234",
+    "first_name": "Jan",
+    "last_name": "Kowalski"
+}
+'
+```
+
+## Robot
+
+### Configure Chrome WebDriver
+```
+	${args}    ChromeConfiguration.serviceargs
+	${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+	Call Method    ${chrome_options}  add_argument  --no-sandbox
+	Call Method    ${chrome_options}  add_argument  --headles
+	
+  # Create WebDriver   Chrome  chrome_options=${options}
+	# ${chrome_options}    ChromeConfiguration.config
+  # ${args}    ChromeConfiguration.serviceargs
+	# Start Virtual Display    1920    1080
+  Create WebDriver    Chrome    chrome_options=${chrome_options}    service_args=${args}
+```
+
+Run Test:  
+```
+cd tests/
+robot test014.robot 
+```

@@ -3,18 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-import unittest
 from time import sleep
-
-
-# DANE TESTOWE
-email = "ingus@wp.pl"
-login = "Ingusek"
-first_name = "Inga"
-last_name = "Gajewska"
-password = "panda2000"
-invalid_password = "ff"
-
+import unittest
+import os
 
 class RegistrationTest(unittest.TestCase):
     """
@@ -27,7 +18,7 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver = webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get(os.environ['APP_URL'])
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
@@ -40,6 +31,9 @@ class RegistrationTest(unittest.TestCase):
     def testUserRegister(self):
         email = self.fake.email()
         login = self.fake.simple_profile()['username']
+        first_name = "Inga"
+        last_name = "Gajewska"
+        password = "test1234"
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -79,7 +73,7 @@ class RegistrationTest(unittest.TestCase):
         expectedTitle = "You are successfully registered."
         self.assertEqual(title, expectedTitle)
         # 9. Przejście na stronę potwierdzenia emaila
-        driver.get("http://127.0.0.1/mailhog/")
+        driver.get(os.environ['MAILHOG_URL'])
         sleep(1)
         # 10. Otwarcie emaila
         email_link = driver.find_element(

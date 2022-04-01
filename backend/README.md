@@ -8,7 +8,7 @@ Vue.js, Vuex, Vue Router, Vue Draggable, Vuelidate, BootstrapVue, Jest, Cypress
 npm run serve
 ```
 
-Opent the browser and go to [http://localhost:8081](http://localhost:8081)
+Opent the browser and go to [http://todo.local:8081](http://todo.local:8081)
 
 ## Features & Pages
 

@@ -7,3 +7,7 @@ npm-debug.log
 .vscode/
 .github/
 *.log
+*.pid
+**/e2e/**/*.png
+**/e2e/**/*.html
+**/e2e/**/*.xml

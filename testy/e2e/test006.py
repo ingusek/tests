@@ -3,18 +3,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-import unittest
 from time import sleep
-
+import unittest
+import os
 
 # DANE TESTOWE
-login = "Ingusek"
-password = "panda2000"
-
+login = os.environ['LOGIN']
 
 class RegistrationTest(unittest.TestCase):
     """
-    Scenariusz : Logowanie się na stronie http://localhost/frontend-nuxt/login przy użyciu poprawnego loginu i niepoprawnego hasła.
+    Scenariusz : Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu poprawnego loginu i niepoprawnego hasła.
     """
 
     def setUp(self):
@@ -23,7 +21,7 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver = webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get(os.environ['APP_URL'])
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
@@ -57,7 +55,7 @@ class RegistrationTest(unittest.TestCase):
         sleep(1)
         title = driver.find_element(
             By.XPATH, '//div[@data-cy="login-error-message"]').text
-        expectedTitle = "Your username or password is incorrect. Please try again."
+        expectedTitle = "Your username or password is incorrect."
         self.assertEqual(title, expectedTitle)
 
         sleep(5)

@@ -3,17 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-import unittest
 from time import sleep
-
+import unittest
+import os
 
 # DANE TESTOWE
-login = "Ingusek"
+login = os.environ['LOGIN']
+password = os.environ['PASSWORD']
 first_name = "Inga"
 last_name = "Gajewska"
-password = "panda2000"
-invalid_password = "ff"
-
 
 class RegistrationTest(unittest.TestCase):
     """
@@ -26,7 +24,7 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver = webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get(os.environ['APP_URL'])
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu

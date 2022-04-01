@@ -14,7 +14,7 @@ password = "panda2000"
 
 class RegistrationTest(unittest.TestCase):
     """
-    Scenariusz : Logowanie się na stronie http://localhost/frontend-nuxt/login przy użyciu poprawnego loginu i poprawnego hasła
+    Scenariusz : Sprawdzanie danych użytkownika na stronie http://localhost/frontend-nuxt/ po zalogowaniu się
     """
 
     def setUp(self):

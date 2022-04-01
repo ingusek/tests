@@ -3,18 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-import unittest
 from time import sleep
-
+import unittest
+import os
 
 # DANE TESTOWE
-email = "ingus@wp.pl"
-login = "Ingusek"
+email = "ji8989898uii"
 first_name = "Inga"
 last_name = "Gajewska"
-password = "panda2000"
-invalid_password = "ff"
-
+password = "test1234"
 
 class RegistrationTest(unittest.TestCase):
     """
@@ -27,7 +24,7 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver = webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get(os.environ['APP_URL'])
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
@@ -54,7 +51,7 @@ class RegistrationTest(unittest.TestCase):
         # Znajdź element
         email_input = driver.find_element(By.ID, "input-email")
         # Zastosuj metodę send_keys() żeby wpisać coś w element
-        email_input.send_keys("ji8989898uii")
+        email_input.send_keys(email)
         # 3. Wpsz unikalną nazwę użytkownika”
         login_input = driver.find_element(By.ID, "input-username")
         login_input.send_keys(login)
@@ -71,8 +68,8 @@ class RegistrationTest(unittest.TestCase):
         register_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
-        # Oczekiwany rezultat
-        # info_error_number = driver.find_element(By.XPATH, '// div[@class="alert alert-danger"]
+        self.assertFalse(register_btn.is_enabled())
+        
         sleep(5)
 
     def tearDown(self):

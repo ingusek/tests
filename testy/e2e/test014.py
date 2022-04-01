@@ -1,18 +1,16 @@
 # Import bibliotek
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
-from seletools.actions import drag_and_drop
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-import unittest
 from time import sleep
-
+import unittest
+import os
 
 # DANE TESTOWE
-login = "ingus@wp.pl"
-password = "123456"
-
+login = os.environ['LOGIN']
+password = os.environ['PASSWORD']
 
 class RegistrationTest(unittest.TestCase):
     """
@@ -25,7 +23,7 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver =  webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get(os.environ['APP_URL'])
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
@@ -51,9 +49,9 @@ class RegistrationTest(unittest.TestCase):
         password_input = driver.find_element(By.ID, "input-password")
         password_input.send_keys(password)
         # 4. Kliknij Login
-        register_btn = driver.find_element(
+        login_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
-        register_btn.click()
+        login_btn.click()
         sleep(1)
         # 5. Kliknięcie w zakładkę "Todo"
         Todo_btn = driver.find_element(
@@ -84,12 +82,13 @@ class RegistrationTest(unittest.TestCase):
         target = driver.find_element(
             By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]')
         actions2 = ActionChains(driver)
-        actions2.drag_and_drop(
-            source, target).perform()
+        # actions2.drag_and_drop(
+        #     source, target).perform()
+        actions2.click_and_hold(source).move_to_element(target).pause(2).move_by_offset(20, 20).pause(2).release().perform()
         # sleep(5)
 
         # self.assertEqual(source.text, target.text)
-        # sleep(5)
+        sleep(5)
 
     def tearDown(self):
         # Zakończenie testu
@@ -98,4 +97,4 @@ class RegistrationTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()  # (verbosity=4)
+    unittest.main(verbosity=4)

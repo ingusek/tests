@@ -11,7 +11,7 @@ Node.js, Express, Webpack, Express Validator, JWT, Bunyan, Promise MySQL, Node M
    ```
 
 2. Uncomment **volumes** in the `docker-compose.yml` file
-3. Access via `http://localhost/api`
+3. Access via `http://todo.local/api`
 
 ## How to manage migration
 

@@ -266,7 +266,7 @@ describe('authModel', () => {
           role: userModel.userRole.user,
           status: userModel.userStatus.active
         },
-        { apiURL: 'http://localhost/api' }
+        { apiURL: 'http://todo.local/api' }
       );
     });
 
@@ -297,7 +297,7 @@ describe('authModel', () => {
         templatePath: 'app/templates/register-confirm.html',
         templateValues: {
           first_name: 'Chris',
-          verification_link: `http://localhost/api/register-confirm?key=my-uuid`
+          verification_link: `http://todo.local/api/register-confirm?key=my-uuid`
         }
       });
     });
@@ -345,7 +345,7 @@ describe('authModel', () => {
         try {
           result = await authModel.passwordResetRequest(
             { email: 'chris.lee@boilerplate.local' },
-            { apiURL: 'http://localhost/api' }
+            { apiURL: 'http://todo.local/api' }
           );
         } catch (e) {
           error = e;
@@ -369,7 +369,7 @@ describe('authModel', () => {
 
         result = await authModel.passwordResetRequest(
           { email: 'chris.lee@boilerplate.local' },
-          { apiURL: 'http://localhost/api' }
+          { apiURL: 'http://todo.local/api' }
         );
       });
 
@@ -390,7 +390,7 @@ describe('authModel', () => {
           templatePath: 'app/templates/password-reset.html',
           templateValues: {
             first_name: 'Chris',
-            password_reset_link: `http://localhost/api/password-reset-verify?key=my-uuid`
+            password_reset_link: `http://todo.local/api/password-reset-verify?key=my-uuid`
           }
         });
       });

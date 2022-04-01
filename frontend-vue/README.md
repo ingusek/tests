@@ -14,7 +14,7 @@ npm install
 npm run serve
 ```
 
-Open the browser and go to [http://localhost:8080](http://localhost:8080)
+Open the browser and go to [http://todo.local:8080](http://todo.local:8080)
 
 ## Pages
 
