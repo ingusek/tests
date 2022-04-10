@@ -130,7 +130,10 @@ services:
     image: mailhog/mailhog
     networks:
       - internal
-
+networks:
+  internal:
+    driver: bridge
+    
   # selenium:
   #   container_name: selenium
   #   working_dir: /tests
@@ -189,6 +192,3 @@ services:
   #   networks:
   #     - internal
 
-networks:
-  internal:
-    driver: bridge

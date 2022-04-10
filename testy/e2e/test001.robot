@@ -1,7 +1,7 @@
 ***Settings***
 Metadata    Author       	Inga Gajewska
-Library	SeleniumLibrary
-Library    FakerLibrary
+Library		SeleniumLibrary
+Library    	FakerLibrary
 
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 
@@ -63,4 +63,3 @@ Register button
 Assert Register
 	${welcome}=	Get Text	//div[@class="card-body"]//h1
 	Should Be Equal	${welcome}	You are successfully registered.
-
