@@ -52,10 +52,28 @@ class RegistrationTest(unittest.TestCase):
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
         sleep(1)
-        # 5. Kliknięcie w zakładkę "Todo"
-        Todo_btn = driver.find_element(
-            By.XPATH, '//a[@href="/frontend-vue/todo"]')
-        Todo_btn.click()
+        # 5. Kliknięcie w zakładkę "Todo"        # 8. Kliknij Add (dodanie do Ongoing)
+        Add_btn = driver.find_element(
+            By.XPATH, '//form//button[@type="submit"]')  # WebElement
+        Add_btn.click()
+        Add_btn = driver.find_element(
+            By.XPATH, '//div[@class="todo-list-group"]//div[@data-name="todo-pending-list-0"]')  # WebElement
+        Add_btn.click()
+
+        # 9. Przeniesienie pozycji z listy Pending  do listy Ongoing
+       # Przenies_element = driver.find_element(
+        # By.XPATH, '//div[@class="l-2 todo-ongoing-span"][1]')  # WebElement
+       # Przenies_element.send_keys("śniadanie")
+        sleep(1)
+        source = driver.find_element(
+            By.XPATH, '//div[@data-name="todo-pending-list-0"]')
+        target = driver.find_element(
+            By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]')
+        actions2 = ActionChains(driver)
+        actions2.drag_and_drop_by_offset(
+            source, 650, 140).pause(2).release(target).perform()
+        # actions2.click_and_hold(source).move_to_element(target).pause(5).release(target).perform()
+        # drag_and_drop(driver, source, target)
 
         # 6. Wyświetlenie pola TodoApp
         sleep(5)

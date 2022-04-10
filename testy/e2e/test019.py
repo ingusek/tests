@@ -10,10 +10,11 @@ import os
 # DANE TESTOWE
 login = os.environ['LOGIN']
 password = os.environ['PASSWORD']
+expectedTitle= "Sample page 2"
 
 class RegistrationTest(unittest.TestCase):
     """
-    Scenariusz : Umieszczenie na liście Pending pozycji o tej samej nazwie
+    Scenariusz : Wyświetlenie informacji z podstrony Page2
     """
 
     def setUp(self):
@@ -28,7 +29,6 @@ class RegistrationTest(unittest.TestCase):
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
         # maks. 10 sekund
         self.driver.implicitly_wait(10)
-        self.faker = Faker()
 
     def testUserRegister(self):
         # Faktyczny test
@@ -52,29 +52,32 @@ class RegistrationTest(unittest.TestCase):
         register_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
-        sleep(1)
-        # 5. Kliknięcie w zakładkę "Todo"
-        Todo_btn = driver.find_element(
-            By.XPATH, '//a[@href="/frontend-vue/todo"]')
-        Todo_btn.click()
 
-        # 6. Wyświetlenie pola TodoApp
-        sleep(5)
-        title = driver.find_element(By.TAG_NAME, 'h1').text
-        expectedTitle = "Todo App"
+        # 8. Sprawdzenie logowania użytkownika
+        sleep(1)
+        title = driver.find_element(By.PARTIAL_LINK_TEXT, 'My Account').text
+        self.assertEqual(title, "My Account")
+
+        #9. Kliknięcie w menu Simple Page
+        SimplePage_menu = driver.find_element(
+            By.PARTIAL_LINK_TEXT, 'Sample Page')  # WebElement
+        SimplePage_menu.click()
+
+        sleep(1)
+
+
+        #10. Wybór pozycji Page2
+        Page2_menu = driver.find_element(
+            By.XPATH, '//a[@href="/frontend-vue/sample-page/2"]')   # WebElement
+        Page2_menu.click()
+ 
+        title=driver.find_element(
+            By.XPATH, '//div[@class="page-page text-center my-5"]/h1'
+        ).text
         self.assertEqual(title, expectedTitle)
 
-        name_input = driver.find_element(By.ID, "input-name")
-        name_input.send_keys(self.faker.name())
+        sleep(5)       
 
-        # 7. Kliknij Add
-        Add_btn = driver.find_element(
-            By.XPATH, '//form//button[@type="submit"]')  # WebElement
-        
-        Add_btn.click()
-        Add_btn.click()
-
-        sleep(5)
 
     def tearDown(self):
         # Zakończenie testu

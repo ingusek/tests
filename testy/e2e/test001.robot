@@ -1,7 +1,7 @@
 ***Settings***
+Metadata    Author       	Inga Gajewska
 Library	SeleniumLibrary
 Library    FakerLibrary
-
 
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 
