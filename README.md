@@ -201,7 +201,15 @@ curl --location --request POST 'http://todo.local/api/user/register' \
 ```
 
 Run Test:  
+
+Robot with Page Object:  
 ```
-cd tests/
-robot test014.robot 
+cd tests/e2e/robot-page-object
+robot -d results tests/Registration.robot
+```
+
+Robot: 
+```
+cd tests/e2e/robot
+robot -d results Registration.robot
 ```

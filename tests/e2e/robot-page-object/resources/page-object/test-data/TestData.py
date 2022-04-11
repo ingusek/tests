@@ -1,0 +1,1 @@
+ExpectedWelcomeAfterRegisterText = 'You are successfully registered.'

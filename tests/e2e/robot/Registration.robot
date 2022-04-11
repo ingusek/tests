@@ -1,16 +1,27 @@
 ***Settings***
-Library	SeleniumLibrary
-Library    FakerLibrary
-
+Metadata    Author       	Inga Gajewska
+Library		SeleniumLibrary
+Library    	FakerLibrary
 
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 
 ***Variables***
 ${BROWSER}		Chrome
 ${APP_URL}		%{APP_URL}
-${EMAIL}       ji8989898uii
+${InvalidEmail}	ji8989898uii
 
 ***Test Cases***
+Rejestracja nowego użytkownika w systemie
+	Open main page
+	Go to registration page
+    Input Email
+   	Input Username
+   	Input Password
+    Input First name
+    Input Last name
+   	Register button
+   	Assert Register
+
 Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
 	Open main page
 	Go to registration page
@@ -19,12 +30,11 @@ Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
    	Input Password
     Input First name
     Input Last name
-   	Assert Register
+   	Assert Register With Invalid Email
 
 ***Keywords***
 
 Suite shutdown
-	Sleep	10s
 	Close All Browsers
 
 Open main page
@@ -34,8 +44,12 @@ Open main page
 Go to registration page
 	Click Element       //a[contains(text(),'Sign up')]
 
-Input Invalid Email
+Input Email
+    ${EMAIL}=    FakerLibrary.Email
 	Input Text	input-email	${Email}
+
+Input Invalid Email
+	Input Text	input-email	${InvalidEmail}
 
 Input Username
     ${USERNAME}=    FakerLibrary.First_Name
@@ -53,5 +67,14 @@ Input Last name
     ${LAST_NAME}=    FakerLibrary.Last_Name
 	Input Text	input-last-name	${LAST_NAME}
 
+Register button
+    Element Should Be Enabled	//button[@type="submit"]
+	Click Element       //button[@type="submit"]
+	Sleep	1s
+
 Assert Register
+	${welcome}=	Get Text	//div[@class="card-body"]//h1
+	Should Be Equal	${welcome}	You are successfully registered.
+
+Assert Register With Invalid Email
 	Element Should Be Disabled	//button[@type="submit"]
