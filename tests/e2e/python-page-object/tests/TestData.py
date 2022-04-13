@@ -7,16 +7,7 @@ class TestData:
     def __init__(self):
         fake = Faker()
         self.email = fake.email()
-        if fake.boolean():
-            self.gender = "female"
-        else:
-            self.gender = "male"
         self.last_name = fake.last_name()
+        self.first_name = fake.first_name()
+        self.login = fake.simple_profile()['username']
         self.password = fake.password()
-        self.birthdate = fake.date()
-        self.address = fake.street_address()
-        self.city = fake.city()
-        self.postal_code = fake.postalcode()
-        self.state = fake.state()
-        self.phone = fake.numerify("##########")
-        self.alias = fake.word()
