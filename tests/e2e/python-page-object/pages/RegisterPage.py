@@ -2,7 +2,6 @@ from time import sleep
 from pages.BasePage import BasePage
 from pages.RegisterConfirmationPage import RegisterConfirmationPage
 from pages.Locators import RegisterPageLocators
-from selenium.webdriver.support.ui import WebDriverWait
 
 class RegisterPage(BasePage):
     """
@@ -17,7 +16,7 @@ class RegisterPage(BasePage):
 
     def register(self):
         self.get_element(RegisterPageLocators.RegisterButton).click()
-        # h1 = self.get_element(RegisterPageLocators.Title).text
-        # WebDriverWait(h1, 100).until(lambda h1: h1 != 'Register')
-        sleep(3)
         return RegisterConfirmationPage(self.driver)
+
+    def is_button_enabled(self):
+        return self.get_element(RegisterPageLocators.RegisterButton).is_enabled()

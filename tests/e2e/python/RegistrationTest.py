@@ -30,7 +30,7 @@ class RegistrationTest(unittest.TestCase):
         self.fake = Faker()
         self.name = self.fake.name()
 
-    def testRegisterUser(self):
+    def test_registration_success(self):
         email = self.fake.email()
         password = self.fake.password()
         login = self.fake.simple_profile()['username']
@@ -99,7 +99,7 @@ class RegistrationTest(unittest.TestCase):
         
 
 
-    def testRegisterUserWithInvalidEmail(self):
+    def test_registeration_with_invalid_email(self):
         password = self.fake.password()
         login = self.fake.simple_profile()['username']
         first_name = self.fake.first_name()

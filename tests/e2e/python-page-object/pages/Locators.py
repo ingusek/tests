@@ -26,3 +26,11 @@ class HomePageLocators():
     SingUpButton = (By.XPATH, "//a[contains(text(),'Sign up')]")
 
 
+class MailHogPageLocators():
+    EmailRegistrationConfirmButton = (By.PARTIAL_LINK_TEXT, 'Confirm')
+    EmailFirstRow = (By.XPATH, '//div[@class="messages container-fluid ng-scope"]/div[1]')
+    PreviewIframe = (By.ID, "preview-html")
+
+class LoginPageLocators:
+    PageTitle = (By.XPATH, '//div[@class="card-body"]/h1')
+    ConfirmRegistrationInfoBox = (By.XPATH, '//div[@data-cy="login-success-message"]')
