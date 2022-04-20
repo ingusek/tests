@@ -1,6 +1,5 @@
 ***Settings***
 Library	SeleniumLibrary
-Library    FakerLibrary
 # Library	/app/library/ChromeConfiguration.py
 # Library	XvfbRobot
 
@@ -11,19 +10,19 @@ ${BROWSER}		Chrome
 ${APP_URL}		%{APP_URL}
 ${USERNAME}		%{LOGIN}
 ${PASSWORD}		%{PASSWORD}
+${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo
-    ${entry}=    FakerLibrary.Name
-    Set Suite Variable  ${entry}
+Sprawdzanie danych użytkownika na stronie http://localhost/frontend-nuxt/ po zalogowaniu się
 	Open main page
 	Go to login page
    	Input Username
    	Input Password
    	Login button
-   	Assert Login
-	Open page Todo
-    Add a new entry to the list Todo
+    Open page Account   
+	Assert Username
+    Assert name
+    Assert email
 
 ***Keywords***
 
@@ -48,22 +47,18 @@ Login button
 	Click Element       //button[@type="submit"]
 	Sleep	1s
 
-Assert Login
-	${welcome}=	Get Text	//a[@href="/frontend-vue/account"]
-	Should Be Equal	${welcome}	Welcome, Jan
+Assert Username
+	${username}=	Get Text	//div//fieldset[1]//small[@class="form-text text-muted"]
+	Should Be Equal	${username}	Ingusek
 
-Open page Todo
-     Click Element       //a[contains(text(),'Todo')]
+Assert name
+    ${name}=	Get Text	//div//fieldset[2]//small[@class="form-text text-muted"]
+	Should Be Equal	${name}	Jan, Kowalski
 
-Assert Todo
-	${Todo App}=	Get Text	//h1[@class="page-title"]
-	Should Be Equal	${Todo App}	Todo App
+Assert email
+    ${email}=	Get Text	//div//fieldset[3]//small[@class="form-text text-muted"]
+	Should Be Equal	${email}	ingus@wp.pl
 
-Add a new entry to the list Todo
-    Input Text	input-name	${entry}
-    Click Element       //button[contains(text(),'Add')]
+Open page Account
+	Click Element       //a[@href="/frontend-vue/account"]
 	Sleep	1s
-
-Assert a new entry to the list Todo
-	${new_entry}=	Get Text	//div[@data-name="todo-pending-name-0"]//span
-	Should Be Equal	${new_entry}	${entry}

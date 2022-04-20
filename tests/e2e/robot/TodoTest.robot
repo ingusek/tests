@@ -1,7 +1,8 @@
 ***Settings***
-Library	    SeleniumLibrary
-Library     FakerLibrary
-
+Library	SeleniumLibrary
+Library    FakerLibrary
+# Library	/app/library/ChromeConfiguration.py
+# Library	XvfbRobot
 
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 
@@ -10,8 +11,30 @@ ${BROWSER}		Chrome
 ${APP_URL}		%{APP_URL}
 ${USERNAME}		%{LOGIN}
 ${PASSWORD}		%{PASSWORD}
+${TASK}			Test
 
 ***Test Cases***
+Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
+	Open main page
+	Go to login page
+   	Input Username
+   	Input Password
+   	Login button
+   	Assert Login
+	Open page Todo
+
+Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo
+    ${entry}=    FakerLibrary.Name
+    Set Suite Variable  ${entry}
+	Open main page
+	Go to login page
+   	Input Username
+   	Input Password
+   	Login button
+   	Assert Login
+	Open page Todo
+    Add a new entry to the list Todo
+
 Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
     ${entry}=    FakerLibrary.Name
     Set Suite Variable  ${entry}
@@ -25,6 +48,21 @@ Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
     Add a new entry to the list Todo
     Remove item from list Pending
     Assert removing item from list Pending
+
+Umieszczenie na liście Pending pozycji o tej samej nazwie
+    ${entry}=    FakerLibrary.Name
+    Set Suite Variable  ${entry}
+	Open main page
+	Go to login page
+   	Input Username
+   	Input Password
+   	Login button
+   	Assert Login
+	Open page Todo
+    Add a new entry to the list Todo
+	Add a new entry to the list Todo
+
+
 ***Keywords***
 
 Suite shutdown
@@ -54,7 +92,6 @@ Assert Login
 
 Open page Todo
      Click Element       //a[contains(text(),'Todo')]
-     Sleep  1s
 
 Assert Todo
 	${Todo App}=	Get Text	//h1[@class="page-title"]
@@ -66,7 +103,6 @@ Add a new entry to the list Todo
 	Sleep	1s
 
 Assert a new entry to the list Todo
-    Page Should Contain Element	//div[@data-name="todo-pending-name-0"]//span[contains(text(),'${entry}')]
 	${new_entry}=	Get Text	//div[@data-name="todo-pending-name-0"]//span
 	Should Be Equal	${new_entry}	${entry}
 
@@ -76,3 +112,4 @@ Remove item from list Pending
 
 Assert removing item from list Pending
 	Page Should Not Contain Element	//div[@data-name="todo-pending-name-0"]//span[contains(text(),'${entry}')]
+

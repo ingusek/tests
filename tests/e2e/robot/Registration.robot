@@ -9,6 +9,8 @@ Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 ${BROWSER}		Chrome
 ${APP_URL}		%{APP_URL}
 ${InvalidEmail}	ji8989898uii
+${EMAIL}        %{EMAIL}
+${LOGIN}        %{LOGIN}
 
 ***Test Cases***
 Rejestracja nowego użytkownika w systemie
@@ -31,6 +33,28 @@ Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
     Input First name
     Input Last name
    	Assert Register With Invalid Email
+
+Rejestracja nowego użytkownika w systemie z zajętym adresem email
+	Open main page
+	Go to registration page
+    Input already in use Email
+   	Input Username
+   	Input Password
+    Input First name
+    Input Last name
+    Register button
+   	Assert Register with email already in use
+
+Rejestracja nowego użytkownika w systemie z zajętą nazwą użytkownika
+	Open main page
+	Go to registration page
+    Input Email
+   	Input already in use Login
+   	Input Password
+    Input First name
+    Input Last name
+    Register button
+   	Assert Register with username already in use
 
 ***Keywords***
 
@@ -67,6 +91,12 @@ Input Last name
     ${LAST_NAME}=    FakerLibrary.Last_Name
 	Input Text	input-last-name	${LAST_NAME}
 
+Input already in use Email
+	Input Text	input-email	${EMAIL}
+
+Input already in use Login
+    Input Text	input-username	${LOGIN}
+
 Register button
     Element Should Be Enabled	//button[@type="submit"]
 	Click Element       //button[@type="submit"]
@@ -78,3 +108,11 @@ Assert Register
 
 Assert Register With Invalid Email
 	Element Should Be Disabled	//button[@type="submit"]
+
+Assert Register with email already in use
+	Element Should Be Enabled	//button[@type="submit"]
+
+Assert Register with username already in use
+	${message}=	Get Text		//div[@class="text-danger message-col col"]
+    Should Be Equal	${message}	Username is already in use.
+

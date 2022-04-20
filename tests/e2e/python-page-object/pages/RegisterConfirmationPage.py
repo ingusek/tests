@@ -12,5 +12,5 @@ class RegisterConfirmationPage(BasePage):
         """
         return self.get_element(RegisterConfirmationPageLocators.WelcomeAfterRegisterText)
 
-    def wait_for_regitration_success(self):
+    def wait_for_registration_success(self):
         self.get_element_with_text(RegisterPageLocators.Title, 'You are successfully registered.').text

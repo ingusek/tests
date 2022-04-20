@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.9.5 on linux)" generated="20220419 18:38:43.503" rpa="false" schemaversion="2">
+<suite id="s1" name="TodoTest" source="/home/inga/projects/tests/tests/e2e/robot/TodoTest.robot">
+<test id="s1-t1" name="Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu">
+<kw name="Open main page">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220419 18:38:43.881" level="INFO">Opening browser 'Chrome' to base url 'http://localhost/frontend-vue/'.</msg>
+<status status="PASS" starttime="20220419 18:38:43.880" endtime="20220419 18:38:45.414"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Home | Frontend</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220419 18:38:45.438" level="INFO">Page title is 'Home | Frontend'.</msg>
+<status status="PASS" starttime="20220419 18:38:45.415" endtime="20220419 18:38:45.439"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:43.880" endtime="20220419 18:38:45.440"/>
+</kw>
+<kw name="Go to login page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Login')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:45.442" level="INFO">Clicking element '//a[contains(text(),'Login')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:45.441" endtime="20220419 18:38:45.590"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:45.440" endtime="20220419 18:38:45.590"/>
+</kw>
+<kw name="Input Username">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:45.592" level="INFO">Typing text 'ingusek' into text field 'input-username'.</msg>
+<status status="PASS" starttime="20220419 18:38:45.591" endtime="20220419 18:38:45.787"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:45.590" endtime="20220419 18:38:45.787"/>
+</kw>
+<kw name="Input Password">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:45.788" level="INFO">Typing text 'test1234' into text field 'input-password'.</msg>
+<status status="PASS" starttime="20220419 18:38:45.788" endtime="20220419 18:38:45.975"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:45.787" endtime="20220419 18:38:45.976"/>
+</kw>
+<kw name="Login button">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:45.977" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20220419 18:38:45.977" endtime="20220419 18:38:46.119"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:47.120" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:46.119" endtime="20220419 18:38:47.120"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:45.976" endtime="20220419 18:38:47.121"/>
+</kw>
+<kw name="Assert Login">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${welcome}</var>
+<arg>//a[@href="/frontend-vue/account"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:47.220" level="INFO">${welcome} = Welcome, Jan</msg>
+<status status="PASS" starttime="20220419 18:38:47.123" endtime="20220419 18:38:47.220"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${welcome}</arg>
+<arg>Welcome, Jan</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220419 18:38:47.220" endtime="20220419 18:38:47.221"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:47.121" endtime="20220419 18:38:47.222"/>
+</kw>
+<kw name="Open page Todo">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Todo')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:47.225" level="INFO">Clicking element '//a[contains(text(),'Todo')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:47.224" endtime="20220419 18:38:47.304"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:47.222" endtime="20220419 18:38:47.305"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:43.878" endtime="20220419 18:38:47.305"/>
+</test>
+<test id="s1-t2" name="Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo">
+<kw name="Name" library="FakerLibrary">
+<var>${entry}</var>
+<doc>:example 'John Doe'</doc>
+<msg timestamp="20220419 18:38:47.307" level="INFO">${entry} = Neil White</msg>
+<status status="PASS" starttime="20220419 18:38:47.306" endtime="20220419 18:38:47.307"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${entry}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220419 18:38:47.308" level="INFO">${entry} = Neil White</msg>
+<status status="PASS" starttime="20220419 18:38:47.307" endtime="20220419 18:38:47.308"/>
+</kw>
+<kw name="Open main page">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220419 18:38:47.310" level="INFO">Opening browser 'Chrome' to base url 'http://localhost/frontend-vue/'.</msg>
+<status status="PASS" starttime="20220419 18:38:47.309" endtime="20220419 18:38:48.705"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Home | Frontend</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220419 18:38:48.718" level="INFO">Page title is 'Home | Frontend'.</msg>
+<status status="PASS" starttime="20220419 18:38:48.706" endtime="20220419 18:38:48.718"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:47.308" endtime="20220419 18:38:48.719"/>
+</kw>
+<kw name="Go to login page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Login')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:48.721" level="INFO">Clicking element '//a[contains(text(),'Login')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:48.720" endtime="20220419 18:38:48.874"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:48.719" endtime="20220419 18:38:48.874"/>
+</kw>
+<kw name="Input Username">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:48.876" level="INFO">Typing text 'ingusek' into text field 'input-username'.</msg>
+<status status="PASS" starttime="20220419 18:38:48.875" endtime="20220419 18:38:49.058"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:48.874" endtime="20220419 18:38:49.058"/>
+</kw>
+<kw name="Input Password">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:49.060" level="INFO">Typing text 'test1234' into text field 'input-password'.</msg>
+<status status="PASS" starttime="20220419 18:38:49.059" endtime="20220419 18:38:49.250"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:49.059" endtime="20220419 18:38:49.250"/>
+</kw>
+<kw name="Login button">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:49.252" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20220419 18:38:49.251" endtime="20220419 18:38:49.389"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:50.390" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:49.389" endtime="20220419 18:38:50.391"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:49.251" endtime="20220419 18:38:50.391"/>
+</kw>
+<kw name="Assert Login">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${welcome}</var>
+<arg>//a[@href="/frontend-vue/account"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:50.509" level="INFO">${welcome} = Welcome, Jan</msg>
+<status status="PASS" starttime="20220419 18:38:50.393" endtime="20220419 18:38:50.509"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${welcome}</arg>
+<arg>Welcome, Jan</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220419 18:38:50.510" endtime="20220419 18:38:50.511"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:50.392" endtime="20220419 18:38:50.512"/>
+</kw>
+<kw name="Open page Todo">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Todo')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:50.515" level="INFO">Clicking element '//a[contains(text(),'Todo')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:50.514" endtime="20220419 18:38:50.600"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:50.512" endtime="20220419 18:38:50.600"/>
+</kw>
+<kw name="Add a new entry to the list Todo">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-name</arg>
+<arg>${entry}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:50.602" level="INFO">Typing text 'Neil White' into text field 'input-name'.</msg>
+<status status="PASS" starttime="20220419 18:38:50.601" endtime="20220419 18:38:50.835"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[contains(text(),'Add')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:50.835" level="INFO">Clicking element '//button[contains(text(),'Add')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:50.835" endtime="20220419 18:38:50.912"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:51.913" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:50.912" endtime="20220419 18:38:51.913"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:50.600" endtime="20220419 18:38:51.914"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:47.305" endtime="20220419 18:38:51.915"/>
+</test>
+<test id="s1-t3" name="Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending">
+<kw name="Name" library="FakerLibrary">
+<var>${entry}</var>
+<doc>:example 'John Doe'</doc>
+<msg timestamp="20220419 18:38:51.922" level="INFO">${entry} = Susan Hall</msg>
+<status status="PASS" starttime="20220419 18:38:51.919" endtime="20220419 18:38:51.922"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${entry}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220419 18:38:51.924" level="INFO">${entry} = Susan Hall</msg>
+<status status="PASS" starttime="20220419 18:38:51.923" endtime="20220419 18:38:51.924"/>
+</kw>
+<kw name="Open main page">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220419 18:38:51.928" level="INFO">Opening browser 'Chrome' to base url 'http://localhost/frontend-vue/'.</msg>
+<status status="PASS" starttime="20220419 18:38:51.926" endtime="20220419 18:38:52.903"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Home | Frontend</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220419 18:38:52.916" level="INFO">Page title is 'Home | Frontend'.</msg>
+<status status="PASS" starttime="20220419 18:38:52.904" endtime="20220419 18:38:52.916"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:51.925" endtime="20220419 18:38:52.916"/>
+</kw>
+<kw name="Go to login page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Login')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:52.918" level="INFO">Clicking element '//a[contains(text(),'Login')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:52.917" endtime="20220419 18:38:53.074"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:52.917" endtime="20220419 18:38:53.074"/>
+</kw>
+<kw name="Input Username">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:53.076" level="INFO">Typing text 'ingusek' into text field 'input-username'.</msg>
+<status status="PASS" starttime="20220419 18:38:53.075" endtime="20220419 18:38:53.310"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:53.074" endtime="20220419 18:38:53.311"/>
+</kw>
+<kw name="Input Password">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:53.315" level="INFO">Typing text 'test1234' into text field 'input-password'.</msg>
+<status status="PASS" starttime="20220419 18:38:53.314" endtime="20220419 18:38:53.499"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:53.313" endtime="20220419 18:38:53.499"/>
+</kw>
+<kw name="Login button">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:53.501" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20220419 18:38:53.500" endtime="20220419 18:38:53.647"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:54.648" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:53.647" endtime="20220419 18:38:54.649"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:53.499" endtime="20220419 18:38:54.649"/>
+</kw>
+<kw name="Assert Login">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${welcome}</var>
+<arg>//a[@href="/frontend-vue/account"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:54.761" level="INFO">${welcome} = Welcome, Jan</msg>
+<status status="PASS" starttime="20220419 18:38:54.651" endtime="20220419 18:38:54.761"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${welcome}</arg>
+<arg>Welcome, Jan</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220419 18:38:54.762" endtime="20220419 18:38:54.762"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:54.650" endtime="20220419 18:38:54.763"/>
+</kw>
+<kw name="Open page Todo">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Todo')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:54.767" level="INFO">Clicking element '//a[contains(text(),'Todo')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:54.765" endtime="20220419 18:38:54.848"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:54.763" endtime="20220419 18:38:54.849"/>
+</kw>
+<kw name="Add a new entry to the list Todo">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-name</arg>
+<arg>${entry}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:54.850" level="INFO">Typing text 'Susan Hall' into text field 'input-name'.</msg>
+<status status="PASS" starttime="20220419 18:38:54.849" endtime="20220419 18:38:55.108"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[contains(text(),'Add')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:55.108" level="INFO">Clicking element '//button[contains(text(),'Add')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:55.108" endtime="20220419 18:38:55.192"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:56.193" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:55.192" endtime="20220419 18:38:56.194"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:54.849" endtime="20220419 18:38:56.194"/>
+</kw>
+<kw name="Remove item from list Pending">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//div[@data-name="todo-pending-list-0"]//button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:56.197" level="INFO">Clicking element '//div[@data-name="todo-pending-list-0"]//button'.</msg>
+<status status="PASS" starttime="20220419 18:38:56.196" endtime="20220419 18:38:56.297"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:38:57.298" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:56.297" endtime="20220419 18:38:57.298"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:56.195" endtime="20220419 18:38:57.299"/>
+</kw>
+<kw name="Assert removing item from list Pending">
+<kw name="Page Should Not Contain Element" library="SeleniumLibrary">
+<arg>//div[@data-name="todo-pending-name-0"]//span[contains(text(),'${entry}')]</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<msg timestamp="20220419 18:38:57.326" level="INFO">Current page does not contain element '//div[@data-name="todo-pending-name-0"]//span[contains(text(),'Susan Hall')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:57.301" endtime="20220419 18:38:57.326"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:57.299" endtime="20220419 18:38:57.326"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:51.917" endtime="20220419 18:38:57.327"/>
+</test>
+<test id="s1-t4" name="Umieszczenie na liście Pending pozycji o tej samej nazwie">
+<kw name="Name" library="FakerLibrary">
+<var>${entry}</var>
+<doc>:example 'John Doe'</doc>
+<msg timestamp="20220419 18:38:57.334" level="INFO">${entry} = Cathy Perez</msg>
+<status status="PASS" starttime="20220419 18:38:57.332" endtime="20220419 18:38:57.334"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${entry}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20220419 18:38:57.336" level="INFO">${entry} = Cathy Perez</msg>
+<status status="PASS" starttime="20220419 18:38:57.336" endtime="20220419 18:38:57.337"/>
+</kw>
+<kw name="Open main page">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220419 18:38:57.340" level="INFO">Opening browser 'Chrome' to base url 'http://localhost/frontend-vue/'.</msg>
+<status status="PASS" starttime="20220419 18:38:57.339" endtime="20220419 18:38:58.819"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Home | Frontend</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220419 18:38:58.833" level="INFO">Page title is 'Home | Frontend'.</msg>
+<status status="PASS" starttime="20220419 18:38:58.820" endtime="20220419 18:38:58.833"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:57.338" endtime="20220419 18:38:58.833"/>
+</kw>
+<kw name="Go to login page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Login')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:58.835" level="INFO">Clicking element '//a[contains(text(),'Login')]'.</msg>
+<status status="PASS" starttime="20220419 18:38:58.834" endtime="20220419 18:38:58.991"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:58.834" endtime="20220419 18:38:58.991"/>
+</kw>
+<kw name="Input Username">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-username</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:58.992" level="INFO">Typing text 'ingusek' into text field 'input-username'.</msg>
+<status status="PASS" starttime="20220419 18:38:58.992" endtime="20220419 18:38:59.171"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:58.991" endtime="20220419 18:38:59.171"/>
+</kw>
+<kw name="Input Password">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:59.174" level="INFO">Typing text 'test1234' into text field 'input-password'.</msg>
+<status status="PASS" starttime="20220419 18:38:59.174" endtime="20220419 18:38:59.369"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:59.173" endtime="20220419 18:38:59.370"/>
+</kw>
+<kw name="Login button">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:38:59.372" level="INFO">Clicking element '//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20220419 18:38:59.371" endtime="20220419 18:38:59.528"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:39:00.529" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:38:59.528" endtime="20220419 18:39:00.529"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:59.370" endtime="20220419 18:39:00.530"/>
+</kw>
+<kw name="Assert Login">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${welcome}</var>
+<arg>//a[@href="/frontend-vue/account"]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:00.630" level="INFO">${welcome} = Welcome, Jan</msg>
+<status status="PASS" starttime="20220419 18:39:00.532" endtime="20220419 18:39:00.630"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${welcome}</arg>
+<arg>Welcome, Jan</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220419 18:39:00.630" endtime="20220419 18:39:00.631"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:00.530" endtime="20220419 18:39:00.631"/>
+</kw>
+<kw name="Open page Todo">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//a[contains(text(),'Todo')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:00.633" level="INFO">Clicking element '//a[contains(text(),'Todo')]'.</msg>
+<status status="PASS" starttime="20220419 18:39:00.632" endtime="20220419 18:39:00.702"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:00.631" endtime="20220419 18:39:00.702"/>
+</kw>
+<kw name="Add a new entry to the list Todo">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-name</arg>
+<arg>${entry}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:00.703" level="INFO">Typing text 'Cathy Perez' into text field 'input-name'.</msg>
+<status status="PASS" starttime="20220419 18:39:00.703" endtime="20220419 18:39:00.930"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[contains(text(),'Add')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:00.931" level="INFO">Clicking element '//button[contains(text(),'Add')]'.</msg>
+<status status="PASS" starttime="20220419 18:39:00.930" endtime="20220419 18:39:01.022"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:39:02.024" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:39:01.023" endtime="20220419 18:39:02.024"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:00.702" endtime="20220419 18:39:02.025"/>
+</kw>
+<kw name="Add a new entry to the list Todo">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>input-name</arg>
+<arg>${entry}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:02.029" level="INFO">Typing text 'Cathy Perez' into text field 'input-name'.</msg>
+<status status="PASS" starttime="20220419 18:39:02.028" endtime="20220419 18:39:02.232"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//button[contains(text(),'Add')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220419 18:39:02.233" level="INFO">Clicking element '//button[contains(text(),'Add')]'.</msg>
+<status status="PASS" starttime="20220419 18:39:02.232" endtime="20220419 18:39:02.286"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:39:03.287" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20220419 18:39:02.286" endtime="20220419 18:39:03.288"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:02.026" endtime="20220419 18:39:03.290"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:57.330" endtime="20220419 18:39:03.291"/>
+</test>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn" type="TEARDOWN">
+<arg>Suite shutdown</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Suite shutdown">
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220419 18:39:13.309" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20220419 18:39:03.307" endtime="20220419 18:39:13.310"/>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220419 18:39:13.310" endtime="20220419 18:39:13.559"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:03.305" endtime="20220419 18:39:13.560"/>
+</kw>
+<status status="PASS" starttime="20220419 18:39:03.302" endtime="20220419 18:39:13.560"/>
+</kw>
+<status status="PASS" starttime="20220419 18:38:43.504" endtime="20220419 18:39:13.560"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="TodoTest">TodoTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

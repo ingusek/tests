@@ -10,9 +10,7 @@ import os
 invalid_email = "ji8989898uii"
 
 class RegistrationTest(unittest.TestCase):
-    """
-    Scenariusz : Rejestracja nowego użytkownika w systemie
-    """
+    
 
     def setUp(self):
         # Przygotowanie testu
@@ -30,6 +28,9 @@ class RegistrationTest(unittest.TestCase):
         self.fake = Faker()
         self.name = self.fake.name()
 
+    """
+    Scenariusz : Rejestracja nowego użytkownika w systemie
+    """
     def test_registration_success(self):
         email = self.fake.email()
         password = self.fake.password()
@@ -97,8 +98,9 @@ class RegistrationTest(unittest.TestCase):
         expectedTitleLogin = "Login"
         self.assertEqual(titleLogin, expectedTitleLogin)
         
-
-
+    """
+    Scenariusz: Rejestracja z niepoprawnym adresem e-mail
+    """
     def test_registeration_with_invalid_email(self):
         password = self.fake.password()
         login = self.fake.simple_profile()['username']
@@ -137,6 +139,107 @@ class RegistrationTest(unittest.TestCase):
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
         self.assertFalse(register_btn.is_enabled())
+
+
+    """
+    Scenariusz: Rejestracja z zajętym adresem e-mail
+    """
+    def test_registration_with_email_already_in_use(self):
+        login = self.fake.simple_profile()['username']
+        email = os.environ['EMAIL']
+        password = os.environ['PASSWORD']
+        first_name = "Inga"
+        last_name = "Gajewska"
+        # Faktyczny test
+        driver = self.driver
+        # Kroki
+        # 1. Kliknij „Sign up”
+        # Szukam elementu
+        # self.driver.find_element_by_partial_link_text("Sign up") # Selenium 3
+        # Metoda find_element zwraca instancję klasy WebElement
+        sign_in_link = driver.find_element(
+            By.PARTIAL_LINK_TEXT, "Sign up")  # Selenium 4
+        # Klkiknij element
+        sign_in_link.click()
+        # 2. Wpisz niepoprawny e-mail
+        # Znajdź element
+        email_input = driver.find_element(By.ID, "input-email")
+        # Zastosuj metodę send_keys() żeby wpisać coś w element
+        email_input.send_keys(email)
+        # 3. Wpsz unikalną nazwę użytkownika”
+        login_input = driver.find_element(By.ID, "input-username")
+        login_input.send_keys(login)
+        # 4. Wpisz hasło
+        password_input = driver.find_element(By.ID, "input-password")
+        password_input.send_keys(password)
+        # 5. Wpisz imię
+        firstname_input = driver.find_element(By.ID, "input-first-name")
+        firstname_input.send_keys(first_name)
+        # 6. Wpisz nazwisko
+        lastname_input = driver.find_element(By.ID, "input-last-name")
+        lastname_input.send_keys(last_name)
+        # 7. Kliknij Register
+        register_btn = driver.find_element(
+            By.XPATH, '//button[@type="submit"]')  # WebElement
+        register_btn.click()
+        # Oczekiwany rezultat
+        # 8. Sprawdzenie czy pojawił się komunikat o zajętym adresie e-mail
+        error_text = driver.find_element(
+            By.XPATH, '//div[@class="text-danger message-col col"]').text
+        expectedError_text = "Email is already in use."
+        self.assertEqual(error_text, expectedError_text)
+
+
+    """
+    Scenariusz: Rejestracja z zajętą nazwą użytkownika
+    """
+    def test_registration_with_username_already_in_use(self):
+        email = self.fake.email()
+        login = os.environ['LOGIN']
+        password = os.environ['PASSWORD']
+        first_name = "Inga"
+        last_name = "Gajewska"
+        # Faktyczny test
+        driver = self.driver
+        # Kroki
+        # 1. Kliknij „Sign up”
+        # Szukam elementu
+        # self.driver.find_element_by_partial_link_text("Sign up") # Selenium 3
+        # Metoda find_element zwraca instancję klasy WebElement
+        sign_in_link = driver.find_element(
+            By.PARTIAL_LINK_TEXT, "Sign up")  # Selenium 4
+        # Klkiknij element
+        sign_in_link.click()
+        # 2. Wpisz niepoprawny e-mail
+        # Znajdź element
+        email_input = driver.find_element(By.ID, "input-email")
+        # Zastosuj metodę send_keys() żeby wpisać coś w element
+        email_input.send_keys(email)
+        # 3. Wpsz unikalną nazwę użytkownika”
+        login_input = driver.find_element(By.ID, "input-username")
+        login_input.send_keys(login)
+        # 4. Wpisz hasło
+        password_input = driver.find_element(By.ID, "input-password")
+        password_input.send_keys(password)
+        # 5. Wpisz imię
+        firstname_input = driver.find_element(By.ID, "input-first-name")
+        firstname_input.send_keys(first_name)
+        # 6. Wpisz nazwisko
+        lastname_input = driver.find_element(By.ID, "input-last-name")
+        lastname_input.send_keys(last_name)
+        # 7. Kliknij Register
+        register_btn = driver.find_element(
+            By.XPATH, '//button[@type="submit"]')  # WebElement
+        register_btn.click()
+        sleep(3)
+        # Oczekiwany rezultat
+        # 8. Sprawdzenie czy pojawił się komunikat o zajętym adresie e-mail
+        error_text = driver.find_element(
+            By.XPATH, '//div[@class="text-danger message-col col"]').text
+        expectedError_text = "Username is already in use."
+        self.assertEqual(error_text, expectedError_text)
+
+
 
     def tearDown(self):
         # Zakończenie testu

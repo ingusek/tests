@@ -12,7 +12,7 @@ login = os.environ['LOGIN']
 password = os.environ['PASSWORD']
 expectedTitle= "Sample page 2"
 
-class RegistrationTest(unittest.TestCase):
+class Page2Test(unittest.TestCase):
     """
     Scenariusz : Wyświetlenie informacji z podstrony Page2
     """
@@ -30,7 +30,7 @@ class RegistrationTest(unittest.TestCase):
         # maks. 10 sekund
         self.driver.implicitly_wait(10)
 
-    def testUserRegister(self):
+    def test_display_page2(self):
         # Faktyczny test
         driver = self.driver
         # Kroki

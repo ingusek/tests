@@ -12,7 +12,7 @@ login = os.environ['LOGIN']
 email = os.environ['EMAIL']
 expectedTitle= "We sent you an email."
 
-class RegistrationTest(unittest.TestCase):
+class ResetPasswordTest(unittest.TestCase):
     """
     Scenariusz :  Otrzymanie emaila z linkiem do resetu hasła
     """
@@ -30,7 +30,7 @@ class RegistrationTest(unittest.TestCase):
         # maks. 10 sekund
         self.driver.implicitly_wait(10)
 
-    def testUserLogin(self):
+    def test_reset_pasword_successfull(self):
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -68,10 +68,10 @@ class RegistrationTest(unittest.TestCase):
         email_reset.click()
         sleep(1)
         #7. Assercja-klawisz resetu hasła
-        iframe = driver.find_element(By.ID,"preview-html")
+        iframe = driver.find_element(By.ID, "preview-html")
         driver.switch_to.frame(iframe)
         reset_password_btn = driver.find_element(
-            By.XPATH, '//a[contains(text(), "Reset Your Password")]')  # WebElement
+            By.XPATH, '//a[contains(text(), "Reset your password")]')  # WebElement
         reset_password_btn.click()
         driver.switch_to.default_content()
         sleep(5)

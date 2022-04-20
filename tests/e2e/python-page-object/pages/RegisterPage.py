@@ -14,6 +14,9 @@ class RegisterPage(BasePage):
         self.get_element(RegisterPageLocators.RegisterPasswordInput).send_keys(password)   
         self.get_element(RegisterPageLocators.RegisterUsernameInput).send_keys(login)   
 
+    def get_danger_message(self):
+        return self.get_element(RegisterPageLocators.RegisterDangerMessage).text
+
     def register(self):
         self.get_element(RegisterPageLocators.RegisterButton).click()
         return RegisterConfirmationPage(self.driver)

@@ -9,17 +9,18 @@ Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
 ${BROWSER}		Chrome
 ${APP_URL}		%{APP_URL}
 ${USERNAME}		%{LOGIN}
-${PASSWORD}		błędne hasło
-
+${PASSWORD}		%{PASSWORD}
+${TASK}			Test
 
 ***Test Cases***
-Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu poprawnego loginu i niepoprawnego hasła.
+Sprawdzanie czy da się wylogować ze strony http://todo.local/frontend-vue/
 	Open main page
 	Go to login page
    	Input Username
-   	Input Invalid Password
+   	Input Password
    	Login button
-   	Assert Login
+    Logout button
+   	Assert Logout
 	
 
 ***Keywords***
@@ -38,13 +39,16 @@ Go to login page
 Input Username
 	Input Text	input-username	${USERNAME}
 
-Input Invalid Password
+Input Password
 	Input Text	input-password	${PASSWORD}
 
 Login button
 	Click Element       //button[@type="submit"]
 	Sleep	1s
 
-Assert Login
-	${message}=	Get Text	//div[@data-cy="login-error-message"]
-	Should Be Equal	${message}      Your username or password is incorrect. Please try again.	
+Logout button
+    Click Element       //a[contains(text(),'Logout')]
+	Sleep	1s
+
+Assert Logout
+	Element Should Be Visible	//a[contains(text(),'Login')]

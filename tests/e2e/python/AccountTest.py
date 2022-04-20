@@ -3,18 +3,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from faker import Faker
-from time import sleep
 import unittest
+from time import sleep
 import os
 
-# DANE TESTOWE
-login = os.environ['LOGIN']
-password = os.environ['PASSWORD']
+class AccountTest(unittest.TestCase):
 
-class RegistrationTest(unittest.TestCase):
-    """
-    Scenariusz : Umieszczenie na liście Pending pozycji o tej samej nazwie
-    """
 
     def setUp(self):
         # Przygotowanie testu
@@ -22,15 +16,19 @@ class RegistrationTest(unittest.TestCase):
         # Otwarcie przeglądarki
         self.driver = webdriver.Chrome()
         # Otwarcie strony
-        self.driver.get(os.environ['APP_URL'])
+        self.driver.get("http://127.0.0.1/frontend-vue/")
         # Maksymalizacja okna
         self.driver.maximize_window()
         # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
         # maks. 10 sekund
         self.driver.implicitly_wait(10)
-        self.faker = Faker()
 
-    def testUserRegister(self):
+    """
+    Scenariusz : Sprawdzanie danych użytkownika na stronie http://localhost/frontend-nuxt/ po zalogowaniu się
+    """
+    def test_veryfication_user_data_in_page_account(self):
+        login = os.environ['LOGIN']
+        password = os.environ['PASSWORD']
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -52,27 +50,19 @@ class RegistrationTest(unittest.TestCase):
         register_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
-        sleep(1)
-        # 5. Kliknięcie w zakładkę "Todo"
-        Todo_btn = driver.find_element(
-            By.XPATH, '//a[@href="/frontend-vue/todo"]')
-        Todo_btn.click()
 
-        # 6. Wyświetlenie pola TodoApp
-        sleep(5)
-        title = driver.find_element(By.TAG_NAME, 'h1').text
-        expectedTitle = "Todo App"
+        # 8. Sprawdzenie logowania użytkownika
+        sleep(1)
+        title = driver.find_element(By.PARTIAL_LINK_TEXT, 'My Account').text
+        expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
-        name_input = driver.find_element(By.ID, "input-name")
-        name_input.send_keys(self.faker.name())
-
-        # 7. Kliknij Add
-        Add_btn = driver.find_element(
-            By.XPATH, '//form//button[@type="submit"]')  # WebElement
-        
-        Add_btn.click()
-        Add_btn.click()
+        # 9. Kliknięcie w "My Account"
+        driver.find_element(By.PARTIAL_LINK_TEXT, 'My Account').click()
+        sleep(1)
+        username = driver.find_element(
+            By.XPATH, "//div[@class='card-body']//div/fieldset/div").text
+        self.assertEqual(username, login.capitalize())
 
         sleep(5)
 

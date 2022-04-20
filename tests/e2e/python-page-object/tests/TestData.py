@@ -10,6 +10,8 @@ class InvalidTestData:
     """
     def __init__(self) -> None:
         self.email = 'ji8989898uii'
+        self.password = 'abcdefg'
+        self.login = 'xyzxyz'
 
 class TestData:
     """
@@ -23,3 +25,7 @@ class TestData:
         self.login = fake.simple_profile()['username']
         self.password = fake.password()
         self.invalid = InvalidTestData()
+        self.in_use_login =  os.environ['LOGIN']
+        self.in_use_email =  os.environ['EMAIL']
+        self.in_use_password = os.environ['PASSWORD']
+

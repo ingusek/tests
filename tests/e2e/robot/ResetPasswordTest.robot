@@ -61,10 +61,6 @@ Open email password reset
 
 Assert password reset
     
-   Select Frame      preview-html
-   sleep   3s
-   Click Element        //a[contains(text(), 'Reset Your Password')]
-   sleep   3s   
-   Unselect Frame    
-   Sleep	3s
-     
+   Select Frame         preview-html
+   Click Element        //a[contains(text(), 'Reset your password')]
+   Unselect Frame

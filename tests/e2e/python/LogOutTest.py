@@ -1,4 +1,5 @@
 # Import bibliotek
+from pickle import TRUE
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -11,10 +12,8 @@ import os
 login = os.environ['LOGIN']
 password = os.environ['PASSWORD']
 
-class RegistrationTest(unittest.TestCase):
-    """
-    Scenariusz : Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
-    """
+class LogOutTest(unittest.TestCase):
+   
 
     def setUp(self):
         # Przygotowanie testu
@@ -29,7 +28,10 @@ class RegistrationTest(unittest.TestCase):
         # maks. 10 sekund
         self.driver.implicitly_wait(10)
 
-    def testUserRegister(self):
+    """
+    Scenariusz : Sprawdzanie czy da się wylogować ze strony http://todo.local/frontend-vue/
+    """
+    def test_logout_successfull(self):
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -51,30 +53,22 @@ class RegistrationTest(unittest.TestCase):
         register_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
         register_btn.click()
-        sleep(1)
-        # 5. Kliknięcie w zakładkę "Todo"
-        Todo_btn = driver.find_element(
-            By.XPATH, '//a[@href="/frontend-vue/todo"]')
-        Todo_btn.click()
 
-        # 6. Wyświetlenie pola TodoApp
-        sleep(5)
-        title = driver.find_element(By.TAG_NAME, 'h1').text
-        expectedTitle = "Todo App"
+        # 8. Sprawdzenie logowania użytkownika
+        sleep(1)
+        title = driver.find_element(By.PARTIAL_LINK_TEXT, 'My Account').text
+        expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
-        name_input = driver.find_element(By.ID, "input-name")
-        name_input.send_keys("śniadanie")
+        # 9. Wylogowanie się przez użytkownika-kliknij "Logout"
+        logout_btn = driver.find_element(
+            By.XPATH, '//a[@href="/frontend-vue/logout"]')
+        logout_btn.click()
 
-        # 7. Kliknij Add
-        Add_btn = driver.find_element(
-            By.XPATH, '//form//button[@type="submit"]')  # WebElement
-        Add_btn.click()
-
-       # 8. Usuń element z listy Pending
-        Pending_element = driver.find_element(
-            By.XPATH, '//div[@class="card-body"]//button[@type="button"][1]')  # WebElement
-        Pending_element.click()
+        # 10. Sprawdzenie wylogowania się przez użytkownika-czy jest klawisz "Login"
+        login_btn = driver.find_element(
+            By.XPATH, '//a[@href="/frontend-vue/login"]')
+        self.assertTrue(login_btn.is_displayed())
 
         sleep(5)
 
