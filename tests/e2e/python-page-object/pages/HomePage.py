@@ -4,6 +4,7 @@ from pages.RegisterPage import RegisterPage
 from pages.MailHogPage import MailHogPage
 from pages.MyAccountPage import MyAccountPage
 from pages.LoginPage import LoginPage
+from pages.Page2 import Page2
 
 class HomePage(BasePage):
     """
@@ -49,9 +50,19 @@ class HomePage(BasePage):
         return element
 
     """
-    Goto my account
+    Go to my account
     """
     def goto_my_account(self):
         self.get_element(HomePageLocators.MyAccountButton).click()
         return MyAccountPage(self.driver)
+
+    """
+    Open Page2
+    """    
+    def open_page2(self):
+        self.get_element(HomePageLocators.SimplePageButton).click()
+        self.get_element(HomePageLocators.Page2Button).click()
+        page2 = Page2(self.driver)
+        return page2
+        
 

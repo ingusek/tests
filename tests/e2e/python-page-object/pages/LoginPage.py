@@ -1,5 +1,6 @@
 from pages.BasePage import BasePage
 from pages.Locators import LoginPageLocators
+from pages.ResetPasswordPage import ResetPasswordPage
 
 class LoginPage(BasePage):
 
@@ -18,5 +19,8 @@ class LoginPage(BasePage):
 
     def get_error_message(self):
         return self.get_element(LoginPageLocators.ErrorLoginMessage).text
-        
+    
+    def click_forgot_password(self):
+        self.get_element(LoginPageLocators.ResetPasswordLink).click()
+        return ResetPasswordPage(self.driver)
 

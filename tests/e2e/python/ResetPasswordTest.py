@@ -54,20 +54,20 @@ class ResetPasswordTest(unittest.TestCase):
         request_new_password_btn = driver.find_element(
             By.XPATH, '//button[@type="submit"]')  # WebElement
         request_new_password_btn.click()
-        #5. Assercja "request new email"
+        #5. Assercja  "request new email"- assercja potwierdzenia wysłania emaila (z linkiem do zmiany hasła)
         title=driver.find_element(
             By.XPATH, '//div[@class="card-body"]/h1'
         ).text
         self.assertEqual(title, expectedTitle)
-       # 5. Sprawdź skrzynkę emailową pod adresem http://127.0.0.1/mailhog/
+        # 6. Sprawdź skrzynkę emailową pod adresem http://127.0.0.1/mailhog/
         driver.get(os.environ['MAILHOG_URL'])
         sleep(1)
-        # 6. Otwórz email "reset hasła"
+        # 7. Otwórz email "reset hasła"
         email_reset = driver.find_element(
             By.XPATH, '//div[@class="messages container-fluid ng-scope"]/div[1]')  # WebElement
         email_reset.click()
         sleep(1)
-        #7. Assercja-klawisz resetu hasła
+        #8. Assercja-klawisz resetu hasła
         iframe = driver.find_element(By.ID, "preview-html")
         driver.switch_to.frame(iframe)
         reset_password_btn = driver.find_element(

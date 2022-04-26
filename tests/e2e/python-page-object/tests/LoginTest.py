@@ -11,7 +11,7 @@ class LoginTest(BaseTest):
 
     def test_login_success(self):
         home_page = self.home_page
-        # 1. Click Sign Up
+        # 1. Click Login
         login_page = home_page.click_login()
  
         # 2. Fill login form
