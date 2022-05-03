@@ -77,9 +77,9 @@ services:
       - JWT_REFRESH_SECRET_KEY=7rtbSK6wR05cKn4jMBwIr0Fjs
       - JWT_REFRESH_EXPIRES_IN=7d
       - BCRYPT_SALTING_ROUND=10
-      - API_URL=http://localhost:8081/api
-      - BACKEND_URL=http://localhost:8081/backend
-      - FRONTEND_URL=http://localhost
+      - API_URL=http://nginx:8081/api
+      - BACKEND_URL=http://nginx:8081/backend
+      - FRONTEND_URL=http://frontend
       - EMAIL_FROM_ADDRESS=support@boilerplate.local
       - EMAIL_FROM_NAME=Support
       - SMTP_HOST=mailhog
@@ -103,11 +103,69 @@ services:
       - internal
     environment:
       - BASE_URL=/
-      - API_URL=http://localhost:8081/api
+      - API_URL=http://nginx:8081/api
     volumes:
       - ./frontend:/srv
     ports:
       - 80:80
+  
+  selenium:
+    container_name: selenium
+    working_dir: /tests
+    build:
+      context: selenium
+      shm_size: 2g
+    depends_on:
+      - api
+    environment:
+      - APP_URL=http://frontend/
+      - MAILHOG_URL=http://mailhog:8025/
+      - LOGIN=ingusek
+      - PASSWORD=test1234
+      - EMAIL=ingus@wp.pl
+      - FIRSTNAME=Jan
+      - LASTNAME=Kowalski
+    networks:
+      - internal
+    ports:
+      - 4444:4444
+      - 5900:5900
+      - 7900:7900
+    volumes:
+      - ./tests/e2e:/tests
+
+  robotframework:
+    container_name: robotframework
+    privileged: true
+    build:
+      context: ./robotframework
+      dockerfile: Dockerfile      
+      args:
+        OWNER_ID: $OWNER_ID
+        GROUP_ID: $GROUP_ID
+    depends_on:
+      - api
+    environment:
+      - APP_URL=http://frontend/
+      - MAILHOG_URL=http://mailhog:8025/
+      - LOGIN=ingusek
+      - PASSWORD=test1234
+      - EMAIL=ingus@wp.pl
+      - FIRSTNAME=Jan
+      - LASTNAME=Kowalski
+      - DISPLAY_WIDTH=1600
+      - DISPLAY_HEIGHT=968
+      - RUN_XTERM=no
+    mem_reservation: 2g
+    shm_size: 2g
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./tests/e2e:/home/developer/tests
+    networks:
+      - internal
 
   backend:
     container_name: backend

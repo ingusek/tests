@@ -2,9 +2,9 @@
   "port": 3000,
   "tz": "Australia/Melbourne",
   "bcryptSaltingRound": 10,
-  "apiUrl": "http://todo.local/api",
-  "backendUrl": "http://todo.local/backend",
-  "frontendUrl": "http://todo.local/frontend-vue",
+  "apiUrl": "http://localhost/api",
+  "backendUrl": "http://localhost/backend",
+  "frontendUrl": "http://localhost/frontend",
   "db": {
     "host": "mysql",
     "port": 3306,

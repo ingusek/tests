@@ -11,7 +11,7 @@ class BaseTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        self.driver.get("http://127.0.0.1/frontend-vue/")
+        self.driver.get("http://localhost/")
         self.driver.implicitly_wait(0)
 
         # Stworzyć instancję klasy HomePage

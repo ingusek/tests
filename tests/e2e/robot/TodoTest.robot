@@ -87,7 +87,7 @@ Login button
 	Sleep	1s
 
 Assert Login
-	${welcome}=	Get Text	//a[@href="/frontend-vue/account"]
+	${welcome}=	Get Text	//a[@href="/account"]
 	Should Be Equal	${welcome}	Welcome, Jan
 
 Open page Todo

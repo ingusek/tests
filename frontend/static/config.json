@@ -1,0 +1,8 @@
+{
+  "apiUrl": "http://nginx:8081/api",
+  "format": {
+    "timeZone": "Europe/Warsaw",
+    "dateTime": "YYYY-MM-DD HH:mm:ss",
+    "pickerDateTime": "yyyy-MM-dd HH:mm"
+  }
+}
