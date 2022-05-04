@@ -26,4 +26,11 @@ AccountPageUsername = '//div//fieldset[1]//small[@class="form-text text-muted"]'
 AccountPageName ='//div//fieldset[2]//small[@class="form-text text-muted"]'
 AccountPageEmail = '//div//fieldset[3]//small[@class="form-text text-muted"]'
 
+# Page2 page locators
+OpenSamplePageMenu = "//span[contains(text(),'Sample Page')]"
+OpenPage2Menu = '//a[@href="/sample-page/2"]'
+Page2Title = '//div[@class="page-page text-center my-5"]/h1'
+
+
+
 

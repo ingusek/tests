@@ -12,7 +12,7 @@ ${APP_URL}		%{APP_URL}
 
 *** Test Cases ***
 017 Wyświetlenie informacji z podstrony Page2
-	Open main page
+	Opening Browser  ${APP_URL}  ${BROWSER}
 	Go to login page
    	Input Username
    	Input Password
