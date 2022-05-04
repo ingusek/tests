@@ -13,7 +13,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Wyświetlenie informacji z podstrony Page2
+017 Wyświetlenie informacji z podstrony Page2
 	Open main page
 	Go to login page
    	Input Username

@@ -9,6 +9,9 @@ Opening Browser
     Wait Until Element Is Visible  ${SingUpButton}  timeout=5
   	Title Should Be    Home | Frontend
 
+Go to login page
+	Click Element       ${LoginButton}
+
 Go to registration page
     Click Element       ${SingUpButton}
 
