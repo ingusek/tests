@@ -13,7 +13,6 @@ class RegisterPageLocators():
     RegisterDangerMessage = (By.XPATH, '//div[@class="text-danger message-col col"]')
     Title = (By.XPATH, "//div[@class='card-body']//h1")
 
-
 class RegisterConfirmationPageLocators():
     """
     Locators used on Register Confirmation Page
@@ -31,8 +30,6 @@ class HomePageLocators():
     SimplePageButton = (By.PARTIAL_LINK_TEXT, 'Sample Page')
     Page2Button = (By.XPATH, '//a[@href="/sample-page/2"]')
    
-
-
 class MailHogPageLocators():
     EmailRegistrationConfirmButton = (By.PARTIAL_LINK_TEXT, 'Confirm')
     EmailFirstRow = (By.XPATH, '//div[@class="messages container-fluid ng-scope"]/div[1]')
@@ -47,7 +44,6 @@ class LoginPageLocators:
     ButtonLogin = (By.XPATH, '//button[@type="submit"]')
     ErrorLoginMessage = (By.XPATH, '//div[@data-cy="login-error-message"]')
     ResetPasswordLink = (By.XPATH, '//a[@href="/find-password"]')
-    
 
 class MyAccountPageLocators:
     FieldUsername = (By.XPATH, "//div[@class='card-body']//div/fieldset/div")
