@@ -27,9 +27,9 @@ class HomePageLocators():
     SingUpButton = (By.XPATH, "//a[contains(text(),'Sign up')]")
     LoginButton = (By.PARTIAL_LINK_TEXT, "Login")
     MyAccountButton = (By.PARTIAL_LINK_TEXT, 'My Account')
-    LogoutButton = (By.XPATH, '//a[@href="/frontend-vue/logout"]')
+    LogoutButton = (By.XPATH, '//a[@href="/logout"]')
     SimplePageButton = (By.PARTIAL_LINK_TEXT, 'Sample Page')
-    Page2Button = (By.XPATH, '//a[@href="/frontend-vue/sample-page/2"]')
+    Page2Button = (By.XPATH, '//a[@href="/sample-page/2"]')
    
 
 
@@ -46,7 +46,7 @@ class LoginPageLocators:
     FieldPassword = (By.ID, "input-password")
     ButtonLogin = (By.XPATH, '//button[@type="submit"]')
     ErrorLoginMessage = (By.XPATH, '//div[@data-cy="login-error-message"]')
-    ResetPasswordLink = (By.XPATH, '//a[@href="/frontend-vue/find-password"]')
+    ResetPasswordLink = (By.XPATH, '//a[@href="/find-password"]')
     
 
 class MyAccountPageLocators:

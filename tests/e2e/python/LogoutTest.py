@@ -1,21 +1,24 @@
 # Import bibliotek
+from pickle import TRUE
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from BaseTestCase import BaseTestCase
 from faker import Faker
-import unittest
 from time import sleep
+import unittest
 import os
 
-class AccountTest(BaseTestCase):
+# DANE TESTOWE
+login = os.environ['LOGIN']
+password = os.environ['PASSWORD']
 
+class LogOutTest(BaseTestCase):
+   
     """
-    Scenariusz : Sprawdzanie danych użytkownika na stronie http://localhost/ po zalogowaniu się
+    Scenariusz : Sprawdzanie czy da się wylogować ze strony http://localhost/
     """
-    def test_veryfication_user_data_in_page_account(self):
-        login = os.environ['LOGIN']
-        password = os.environ['PASSWORD']
+    def test_logout_successfull(self):
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -41,17 +44,15 @@ class AccountTest(BaseTestCase):
         expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
-        # 9. Kliknięcie w "My Account"
-        self.get_element(By.PARTIAL_LINK_TEXT, 'My Account').click()
-        sleep(1)
-        username = self.get_element(
-            By.XPATH, "//div[@class='card-body']//div/fieldset/div").text
-        self.assertEqual(username, login)
+        # 9. Wylogowanie się przez użytkownika-kliknij "Logout"
+        logout_btn = self.get_element(
+            By.XPATH, '//a[@href="/logout"]')
+        logout_btn.click()
 
-    def tearDown(self):
-        # Zakończenie testu
-        # Wyłączenie przeglądarki
-        self.driver.quit()
+        # 10. Sprawdzenie wylogowania się przez użytkownika-czy jest klawisz "Login"
+        login_btn = self.get_element(
+            By.XPATH, '//a[@href="/login"]')
+        self.assertTrue(login_btn.is_displayed())
 
 
 if __name__ == '__main__':

@@ -49,11 +49,11 @@ Login button
 	Sleep	1s
 
 Assert Login
-	${welcome}=	Get Text	//a[@href="/frontend-vue/account"]
+	${welcome}=	Get Text	//a[@href="/account"]
 	Should Be Equal	${welcome}	Welcome, Jan
 
 Go to todo list
-	Click Element       //a[@href="/frontend-vue/todo"]
+	Click Element       //a[@href="/todo"]
 
 Add new task
 	Input Text	input-name	${TASK}

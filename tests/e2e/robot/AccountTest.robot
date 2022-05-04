@@ -13,7 +13,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie danych użytkownika na stronie http://localhost/frontend-nuxt/ po zalogowaniu się
+Sprawdzanie danych użytkownika na stronie http://localhost/ po zalogowaniu się
 	Open main page
 	Go to login page
    	Input Username
@@ -60,5 +60,5 @@ Assert email
 	Should Be Equal	${email}	ingus@wp.pl
 
 Open page Account
-	Click Element       //a[@href="/frontend-vue/account"]
+	Click Element       //a[@href="/account"]
 	Sleep	1s

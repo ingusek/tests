@@ -15,7 +15,7 @@ ${INVALID_PASSWORD}		błędne hasło
 ${TASK}			Test
 
 ***Test Cases***
-Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu poprawnego loginu i poprawnego hasła
+Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i poprawnego hasła
 	Open main page
 	Go to login page
    	Input Username
@@ -23,7 +23,7 @@ Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu popr
    	Login button
    	Assert Login
 
-Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu poprawnego loginu i niepoprawnego hasła.
+Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i niepoprawnego hasła.
 	Open main page
 	Go to login page
    	Input Username
@@ -31,7 +31,7 @@ Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu popr
    	Login button
    	Assert Login with invalid password
 
-Logowanie się na stronie http://todo.local/frontend-vue/login przy użyciu niepoprawnego loginu i poprawnego hasła.
+Logowanie się na stronie http://localhost/login przy użyciu niepoprawnego loginu i poprawnego hasła.
 	Open main page
 	Go to login page
    	Input Invalid Username
@@ -70,7 +70,7 @@ Login button
 	Sleep	1s
 
 Assert Login
-	${welcome}=	Get Text	//a[@href="/frontend-vue/account"]
+	${welcome}=	Get Text	//a[@href="/account"]
 	Should Be Equal	${welcome}	Welcome, Jan
 
 Assert Login with invalid password

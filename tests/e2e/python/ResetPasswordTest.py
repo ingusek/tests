@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from BaseTestCase import BaseTestCase
 from faker import Faker
 from time import sleep
 import unittest
@@ -12,32 +13,15 @@ login = os.environ['LOGIN']
 email = os.environ['EMAIL']
 expectedTitle= "We sent you an email."
 
-class ResetPasswordTest(unittest.TestCase):
+class ResetPasswordTest(BaseTestCase):
     """
     Scenariusz :  Otrzymanie emaila z linkiem do resetu hasła
     """
-
-    def setUp(self):
-        # Przygotowanie testu
-        # Warunki wstępne testu
-        # Otwarcie przeglądarki
-        self.driver = webdriver.Chrome()
-        # Otwarcie strony
-        self.driver.get(os.environ['APP_URL'])
-        # Maksymalizacja okna
-        self.driver.maximize_window()
-        # Ustawienie bezwarunkowego czekania na elementy przy wyszukiwaniu
-        # maks. 10 sekund
-        self.driver.implicitly_wait(10)
-
     def test_reset_pasword_successfull(self):
         # Faktyczny test
         driver = self.driver
         # Kroki
         # 1. Kliknij „Login”
-        # Szukam elementu
-        # self.driver.find_element_by_partial_link_text("Login") # Selenium 3
-        # Metoda find_element zwraca instancję klasy WebElement
         sign_in_link = driver.find_element(
             By.PARTIAL_LINK_TEXT, "Login")  # Selenium 4
         # Klkiknij element
@@ -45,7 +29,7 @@ class ResetPasswordTest(unittest.TestCase):
         
        #  2.Kliknij w opcje ”przypomnij hasło”
         click_forgot_password = driver.find_element(
-           By.XPATH, '//a[@href="/frontend-vue/find-password"]')
+           By.XPATH, '//a[@href="/find-password"]')
         click_forgot_password.click()
        # 3. Wpisz adres email w polu „znajdź hasło”
         email_input = driver.find_element(By.ID, "input-email")
@@ -59,7 +43,7 @@ class ResetPasswordTest(unittest.TestCase):
             By.XPATH, '//div[@class="card-body"]/h1'
         ).text
         self.assertEqual(title, expectedTitle)
-        # 6. Sprawdź skrzynkę emailową pod adresem http://127.0.0.1/mailhog/
+        # 6. Sprawdź skrzynkę emailową pod adresem http://127.0.0.1:8025
         driver.get(os.environ['MAILHOG_URL'])
         sleep(1)
         # 7. Otwórz email "reset hasła"
@@ -74,12 +58,6 @@ class ResetPasswordTest(unittest.TestCase):
             By.XPATH, '//a[contains(text(), "Reset your password")]')  # WebElement
         reset_password_btn.click()
         driver.switch_to.default_content()
-        sleep(5)
-
-    def tearDown(self):
-        # Zakończenie testu
-        # Wyłączenie przeglądarki
-        self.driver.quit()
 
 
 if __name__ == '__main__':

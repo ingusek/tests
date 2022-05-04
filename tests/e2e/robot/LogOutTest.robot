@@ -13,7 +13,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie czy da się wylogować ze strony http://todo.local/frontend-vue/
+Sprawdzanie czy da się wylogować ze strony http://localhost/
 	Open main page
 	Go to login page
    	Input Username

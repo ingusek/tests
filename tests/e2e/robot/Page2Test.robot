@@ -48,7 +48,7 @@ Login button
 	Sleep	1s
 
 Assert Login
-	${welcome}=	Get Text	//a[@href="/frontend-vue/account"]
+	${welcome}=	Get Text	//a[@href="/account"]
 	Should Be Equal	${welcome}	Welcome, Jan
 	Sleep	1s
 
@@ -57,7 +57,7 @@ Open Sample Page menu
 	Sleep	1s
 
 Open Page2 menu
-	Click Element       //a[@href="/frontend-vue/sample-page/2"]
+	Click Element       //a[@href="/sample-page/2"]
 	Sleep	1s
 
 Assert Page2
