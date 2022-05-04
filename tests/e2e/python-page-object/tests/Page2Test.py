@@ -1,10 +1,8 @@
 from tests.BaseTest import BaseTest
-from tests.TestData import Settings
-from time import sleep
 
 class Page2Test(BaseTest):
     """
-    Page2 Test
+    ID: 017
     """
     def test_display_page2(self):
         home_page = self.home_page
@@ -33,4 +31,3 @@ class Page2Test(BaseTest):
         #6. Sprawdzenie tytułu strony
         title = page2.get_title()
         self.assertEqual(title, "Sample page 2")
-        

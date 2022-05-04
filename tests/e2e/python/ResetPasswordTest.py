@@ -15,7 +15,8 @@ expectedTitle= "We sent you an email."
 
 class ResetPasswordTest(BaseTestCase):
     """
-    Scenariusz :  Otrzymanie emaila z linkiem do resetu hasła
+    ID: 018
+    Scenariusz: Otrzymanie emaila z linkiem do resetu hasła
     """
     def test_reset_pasword_successfull(self):
         # Faktyczny test

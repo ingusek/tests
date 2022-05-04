@@ -3,12 +3,10 @@ from tests.TestData import Settings
 from time import sleep
 
 class RegistrationTest(BaseTest):
-    """
-    Registration Tests
-    """
-    def verify_error_messages(self, errors):
-        pass
 
+    """
+    ID: 001
+    """
     def test_registration_success(self):
         home_page = self.home_page
         # 1. Click Sign Up
@@ -40,7 +38,9 @@ class RegistrationTest(BaseTest):
         confirmation_text = login_page.get_confirm_regitration_text()
         self.assertEqual(confirmation_text, 'You are now verified. Please use your username/password to login.')
 
-
+    """
+    ID: 002
+    """
     def test_registeration_with_invalid_email(self):
 
         home_page = self.home_page
@@ -63,7 +63,9 @@ class RegistrationTest(BaseTest):
         # 4. Verify
         self.assertFalse(is_button_enabled)
 
-
+    """
+    ID: 003
+    """
     def test_registeration_with_username_already_use(self):
 
         home_page = self.home_page
@@ -89,7 +91,9 @@ class RegistrationTest(BaseTest):
         expectedError_text = "Username is already in use."
         self.assertEqual(error_text, expectedError_text)
 
-
+    """
+    ID: 004
+    """
     def test_registeration_with_email_already_use(self):
 
         home_page = self.home_page

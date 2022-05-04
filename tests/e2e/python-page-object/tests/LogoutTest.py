@@ -1,10 +1,8 @@
 from tests.BaseTest import BaseTest
-from tests.TestData import Settings
-from time import sleep
 
 class LogOutTest(BaseTest):
     """
-    LogOut Tests
+    ID: 009
     """
     def test_logout_success(self):
         home_page = self.home_page
@@ -21,17 +19,14 @@ class LogOutTest(BaseTest):
         login_page.login()
         button = home_page.get_my_account_button()
 
-        # 4.Sprawdzenie logowania użytkownika
+        # 4. Login Assert
         title = button.text
         expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
-        # 5. Wylogowanie się przez użytkownika-kliknij "Logout"
-
+        # 5. Click "Logout"
         home_page.click_logout()
 
-        # 6. Sprawdzenie wylogowania się przez użytkownika-czy jest klawisz "Login"
+        # 6. Asserts
         login_button = home_page.get_login_button()
         self.assertTrue(login_button.is_displayed())
-
-        
