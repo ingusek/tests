@@ -40,6 +40,7 @@ ButtonAddTodo = "//button[contains(text(),'Add')]"
 TodoPendingItem = '//div[@data-name="todo-pending-name-0"]//span'
 RemovePendingItemButton = '//div[@data-name="todo-pending-list-0"]//button'
 RemoveAssertPendingItemButton = '//div[@data-name="todo-pending-name-0"]//span[contains(text(),"${entry}")]'
+TodoAddItemInput = 'input-name'
 
 # Reset password page locators
 RequestNewPasswordEmail = "input-email"

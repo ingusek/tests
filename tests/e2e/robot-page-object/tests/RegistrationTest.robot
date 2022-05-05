@@ -1,14 +1,11 @@
 *** Settings ***
 Documentation  Registration (Page Object in Robot Framework)
 Library  SeleniumLibrary
+Variables	../resources/page-object/test-data/TestData.py
 Resource  ../resources/page-object/keyword-defination-files/RegisterPage.robot
 Resource  ../resources/page-object/keyword-defination-files/RegisterConfirmationPage.robot
 Resource  ../resources/page-object/keyword-defination-files/Common.robot
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
-
-*** Variables ***
-${BROWSER}		Chrome
-${APP_URL}		%{APP_URL}
 
 *** Test Cases ***
 001 Rejestracja nowego użytkownika w systemie
@@ -57,5 +54,3 @@ ${APP_URL}		%{APP_URL}
     Register button
    	Assert Register with email already in use
 
-
-*** Keywords ***

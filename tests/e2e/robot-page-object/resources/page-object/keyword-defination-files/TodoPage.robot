@@ -8,13 +8,14 @@ Variables  ../test-data/TestData.py
 
 Open page Todo
      Click Element       ${OpenPageTodoMenu}
+	 Sleep	1s
 
 Assert Todo
 	${Todo App}=	Get Text	${TodoPageTitle}
 	Should Be Equal	${Todo App}	Todo App
 
 Add a new entry to the list Todo
-    Input Text	input-name	${entry}
+    Input Text	${TodoAddItemInput}	${entry}
     Click Element       ${ButtonAddTodo}
 	Sleep	1s
 

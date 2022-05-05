@@ -21,5 +21,3 @@ Assert email
 Open page Account
 	Click Element       ${GoToAccountPageButton}
 	Sleep	1s
-
-`

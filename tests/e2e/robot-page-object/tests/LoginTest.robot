@@ -1,13 +1,10 @@
 *** Settings ***
 Documentation  Registration (Page Object in Robot Framework)
 Library  SeleniumLibrary
-Resource  ../resources/page-object/keyword-defination-files/LoginPage.robot
-Resource  ../resources/page-object/keyword-defination-files/Common.robot
+Variables	../resources/page-object/test-data/TestData.py
+Resource  	../resources/page-object/keyword-defination-files/LoginPage.robot
+Resource  	../resources/page-object/keyword-defination-files/Common.robot
 Suite Teardown	Run Keyword And Ignore Error  Suite shutdown
-
-*** Variables ***
-${BROWSER}		Chrome
-${APP_URL}		%{APP_URL}
 
 *** Test Cases ***
 005 Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i poprawnego hasła
@@ -33,5 +30,3 @@ ${APP_URL}		%{APP_URL}
    	Input Password
    	Login button
    	Assert Login with invalid username
-
-*** Keywords ***

@@ -24,7 +24,6 @@ Open email password reset
     Click Element       ${RequestNewPasswordOpenEmail}
 
 Assert password reset
-    
    Select Frame         ${EmailContent}
    Click Element        ${RequestNewPasswordButton}
    Unselect Frame

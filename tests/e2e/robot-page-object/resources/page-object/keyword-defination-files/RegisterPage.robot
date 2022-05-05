@@ -37,6 +37,9 @@ Assert Register With Invalid Email
 Input already in use Login
     Input Text	${RegisterUsernameInput}	${LOGIN}
 
+Input already in use Email
+	Input Text	${RegisterEmailInput}	${EMAIL}
+
 Register button
     Element Should Be Enabled	${RegisterButton}
 	Click Element       ${RegisterButton}
