@@ -14,7 +14,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
+010 Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
 	Open main page
 	Go to login page
    	Input Username

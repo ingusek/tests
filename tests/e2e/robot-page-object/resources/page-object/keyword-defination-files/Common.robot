@@ -15,5 +15,12 @@ Go to login page
 Go to registration page
     Click Element       ${SingUpButton}
 
+Logout button
+    Click Element       ${LogoutButton}
+	Sleep	1s
+
+Assert Logout
+	Element Should Be Visible	${LoginButton}
+
 Suite shutdown
 	Close All Browsers

@@ -8,6 +8,8 @@ USERNAME = os.environ['LOGIN']
 INVALID_USERNAME = "błedny login"
 PASSWORD = os.environ['PASSWORD']
 INVALID_PASSWORD = "błędne hasło"
+EMAIL = os.environ['EMAIL']   
+BROWSER	= "Chrome"
 
 MyAccountExpectedUsername = 'Ingusek'
 MyAccountExpectedName = 'Jan, Kowalski'

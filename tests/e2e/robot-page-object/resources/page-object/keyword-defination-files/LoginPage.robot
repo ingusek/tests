@@ -21,6 +21,9 @@ Login button
 	Click Element       ${SubmitLoginButton}
 	Sleep	1s
 
+Click forgot password
+    Click Element       ${ResetPasswordButton}
+
 Assert Login
 	${welcome}=	Get Text	${GoToAccountPageButton}
 	Should Be Equal	${welcome}	Welcome, Jan
