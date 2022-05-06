@@ -15,7 +15,7 @@ ${INVALID_PASSWORD}		błędne hasło
 ${TASK}			Test
 
 ***Test Cases***
-Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i poprawnego hasła
+005 Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i poprawnego hasła
 	Open main page
 	Go to login page
    	Input Username
@@ -23,7 +23,7 @@ Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu 
    	Login button
    	Assert Login
 
-Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i niepoprawnego hasła.
+006 Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i niepoprawnego hasła.
 	Open main page
 	Go to login page
    	Input Username
@@ -31,7 +31,7 @@ Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu 
    	Login button
    	Assert Login with invalid password
 
-Logowanie się na stronie http://localhost/login przy użyciu niepoprawnego loginu i poprawnego hasła.
+007 Logowanie się na stronie http://localhost/login przy użyciu niepoprawnego loginu i poprawnego hasła.
 	Open main page
 	Go to login page
    	Input Invalid Username

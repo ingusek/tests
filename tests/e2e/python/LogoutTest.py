@@ -16,6 +16,7 @@ password = os.environ['PASSWORD']
 class LogOutTest(BaseTestCase):
    
     """
+    ID: 009
     Scenariusz : Sprawdzanie czy da się wylogować ze strony http://localhost/
     """
     def test_logout_successfull(self):

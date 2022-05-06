@@ -14,7 +14,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
+010 Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
 	Open main page
 	Go to login page
    	Input Username
@@ -23,7 +23,7 @@ Sprawdzanie funkcjonalności Todo-dostęp do zakładki Todo tylko po zalogowaniu
    	Assert Login
 	Open page Todo
 
-Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo
+011 Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo
     ${entry}=    FakerLibrary.Name
     Set Suite Variable  ${entry}
 	Open main page
@@ -35,7 +35,7 @@ Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do listy Todo
 	Open page Todo
     Add a new entry to the list Todo
 
-Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
+012 Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
     ${entry}=    FakerLibrary.Name
     Set Suite Variable  ${entry}
 	Open main page
@@ -49,7 +49,7 @@ Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
     Remove item from list Pending
     Assert removing item from list Pending
 
-Umieszczenie na liście Pending pozycji o tej samej nazwie
+016 Umieszczenie na liście Pending pozycji o tej samej nazwie
     ${entry}=    FakerLibrary.Name
     Set Suite Variable  ${entry}
 	Open main page

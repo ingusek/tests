@@ -6,4 +6,3 @@ export PASSWORD=test1234
 export EMAIL=ingus@wp.pl
 export FIRSTNAME=Jan
 export LASTNAME=Kowalski
-

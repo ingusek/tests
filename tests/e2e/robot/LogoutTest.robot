@@ -13,16 +13,15 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-017 Wyświetlenie informacji z podstrony Page2
+009 Sprawdzanie czy da się wylogować ze strony http://localhost/
 	Open main page
 	Go to login page
    	Input Username
    	Input Password
    	Login button
-   	Assert Login
-	Open Sample Page menu   
-	Open Page2 menu
-	Assert Page2
+    Logout button
+   	Assert Logout
+	
 
 ***Keywords***
 
@@ -47,19 +46,9 @@ Login button
 	Click Element       //button[@type="submit"]
 	Sleep	1s
 
-Assert Login
-	${welcome}=	Get Text	//a[@href="/account"]
-	Should Be Equal	${welcome}	Welcome, Jan
+Logout button
+    Click Element       //a[contains(text(),'Logout')]
 	Sleep	1s
 
-Open Sample Page menu
-	Click Element       //span[contains(text(),'Sample Page')]
-	Sleep	1s
-
-Open Page2 menu
-	Click Element       //a[@href="/sample-page/2"]
-	Sleep	1s
-
-Assert Page2
-	${title}=	Get Text       //div[@class="page-page text-center my-5"]/h1
-	Should Be Equal	${title}	Sample page 2	
+Assert Logout
+	Element Should Be Visible	//a[contains(text(),'Login')]

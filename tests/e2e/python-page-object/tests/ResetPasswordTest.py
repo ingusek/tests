@@ -4,11 +4,8 @@ from time import sleep
 
 class ResetPasswordTest(BaseTest):
     """
-    Reset Tests
+    ID: 018
     """
-    def verify_error_messages(self, errors):
-        pass
-
     def test_reset_pasword_successful(self):
         home_page = self.home_page
         # 1. Click Login

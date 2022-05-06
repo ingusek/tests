@@ -15,7 +15,7 @@ ${MAILHOG_URL}  %{MAILHOG_URL}
                  
 
 ***Test Cases***
-Otrzymanie emaila z linkiem do resetu hasła
+018 Otrzymanie emaila z linkiem do resetu hasła
 	Open main page
 	Go to login page
     Click forgot password

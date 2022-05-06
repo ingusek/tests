@@ -3,7 +3,7 @@ from time import sleep
 
 class AccountTest(BaseTest):
     """
-    My account Tests
+    ID: 008
     """
     def test_veryfication_user_data_in_page_account(self):
         home_page = self.home_page

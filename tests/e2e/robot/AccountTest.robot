@@ -13,7 +13,7 @@ ${PASSWORD}		%{PASSWORD}
 ${TASK}			Test
 
 ***Test Cases***
-Sprawdzanie danych użytkownika na stronie http://localhost/ po zalogowaniu się
+008 Sprawdzanie danych użytkownika na stronie http://localhost/ po zalogowaniu się
 	Open main page
 	Go to login page
    	Input Username

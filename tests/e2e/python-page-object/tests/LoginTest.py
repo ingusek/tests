@@ -3,12 +3,10 @@ from tests.TestData import Settings
 from time import sleep
 
 class LoginTest(BaseTest):
-    """
-    Login Tests
-    """
-    def verify_error_messages(self, errors):
-        pass
 
+    """
+    ID: 005
+    """
     def test_login_success(self):
         home_page = self.home_page
         # 1. Click Login
@@ -24,12 +22,14 @@ class LoginTest(BaseTest):
         login_page.login()
         button = home_page.get_my_account_button()
 
-        # 4.Sprawdzenie logowania użytkownika
+        # 4. Asserts
         title = button.text
         expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
-
+    """
+    ID: 006
+    """
     def test_user_login_with_invalid_password(self):
         home_page = self.home_page
         # 1. Click Sign Up
@@ -44,11 +44,14 @@ class LoginTest(BaseTest):
         login_page.login()
         Error_message = login_page.get_error_message()
 
-        # 4.Sprawdzenie logowania użytkownika
+        # 4.Asserts
         expectedError_message = "Your username or password is incorrect. Please try again."
         self.assertEqual(Error_message, expectedError_message)
 
 
+    """
+    ID: 007
+    """
     def test_user_login_with_invalid_username(self):
         home_page = self.home_page
         # 1. Click Sign Up
@@ -63,7 +66,7 @@ class LoginTest(BaseTest):
         login_page.login()
         Error_message = login_page.get_error_message()
 
-        # 4.Sprawdzenie logowania użytkownika
+        # 4.Asserts
         expectedError_message = "Your username or password is incorrect."
         self.assertEqual(Error_message, expectedError_message)
 

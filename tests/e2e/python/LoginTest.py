@@ -13,6 +13,7 @@ import os
 class LoginTest(BaseTestCase):
 
     """
+    ID: 005
     Scenariusz : Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i poprawnego hasła
     """
     def test_user_login_successfull(self):
@@ -45,6 +46,7 @@ class LoginTest(BaseTestCase):
 
 
     """
+    ID: 006
     Scenariusz : Logowanie się na stronie http://localhost/login przy użyciu poprawnego loginu i niepoprawnego hasła
     """
     def test_user_login_with_invalid_password(self):
@@ -76,6 +78,7 @@ class LoginTest(BaseTestCase):
         self.assertEqual(title, expectedTitle)
 
     """
+    ID: 007
     Scenariusz : Logowanie się na stronie http://localhost/login przy użyciu niepoprawnego loginu i poprawnego hasła.
     """
     def test_user_login_with_invalid_username(self):

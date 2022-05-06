@@ -16,6 +16,7 @@ expectedTitle= "Sample page 2"
 class Page2Test(BaseTestCase):
 
     """
+    ID: 017
     Scenariusz : Wyświetlenie informacji z podstrony Page2
     """
     def test_display_page2(self):

@@ -1,12 +1,12 @@
 from tests.BaseTest import BaseTest
 
-class Page2Test(BaseTest):
+class LogOutTest(BaseTest):
     """
-    ID: 017
+    ID: 009
     """
-    def test_display_page2(self):
+    def test_logout_success(self):
         home_page = self.home_page
-        # 1. Click Login
+        # 1. Click Sign Up
         login_page = home_page.click_login()
  
         # 2. Fill login form
@@ -19,15 +19,14 @@ class Page2Test(BaseTest):
         login_page.login()
         button = home_page.get_my_account_button()
 
-        # 4.Sprawdzenie logowania użytkownika
+        # 4. Login Assert
         title = button.text
         expectedTitle = "My Account"
         self.assertEqual(title, expectedTitle)
 
+        # 5. Click "Logout"
+        home_page.click_logout()
 
-        #5. Kliknięcie w menu Simple Page i wybór pozycji Page2
-        page2 = home_page.open_page2()
-
-        #6. Sprawdzenie tytułu strony
-        title = page2.get_title()
-        self.assertEqual(title, "Sample page 2")
+        # 6. Asserts
+        login_button = home_page.get_login_button()
+        self.assertTrue(login_button.is_displayed())

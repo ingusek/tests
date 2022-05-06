@@ -13,6 +13,7 @@ invalid_email = "ji8989898uii"
 class RegistrationTest(BaseTestCase):
     
     """
+    ID: 001
     Scenariusz : Rejestracja nowego użytkownika w systemie
     """
     def test_registration_success(self):
@@ -80,6 +81,7 @@ class RegistrationTest(BaseTestCase):
         self.assertEqual(titleLogin, expectedTitleLogin)
         
     """
+    ID: 002
     Scenariusz: Rejestracja z niepoprawnym adresem e-mail
     """
     def test_registeration_with_invalid_email(self):
@@ -123,6 +125,7 @@ class RegistrationTest(BaseTestCase):
 
 
     """
+    ID: 004
     Scenariusz: Rejestracja z zajętym adresem e-mail
     """
     def test_registration_with_email_already_in_use(self):
@@ -167,6 +170,7 @@ class RegistrationTest(BaseTestCase):
 
 
     """
+    ID: 003
     Scenariusz: Rejestracja z zajętą nazwą użytkownika
     """
     def test_registration_with_username_already_in_use(self):

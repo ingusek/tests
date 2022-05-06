@@ -13,7 +13,7 @@ ${EMAIL}        %{EMAIL}
 ${LOGIN}        %{LOGIN}
 
 ***Test Cases***
-Rejestracja nowego użytkownika w systemie
+001 Rejestracja nowego użytkownika w systemie
 	Open main page
 	Go to registration page
     Input Email
@@ -24,7 +24,7 @@ Rejestracja nowego użytkownika w systemie
    	Register button
    	Assert Register
 
-Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
+002 Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
 	Open main page
 	Go to registration page
     Input Invalid Email
@@ -34,7 +34,18 @@ Rejestracja nowego użytkownika w systemie z niepoprawnym adresem email
     Input Last name
    	Assert Register With Invalid Email
 
-Rejestracja nowego użytkownika w systemie z zajętym adresem email
+003 Rejestracja nowego użytkownika w systemie z zajętą nazwą użytkownika
+	Open main page
+	Go to registration page
+    Input Email
+   	Input already in use Login
+   	Input Password
+    Input First name
+    Input Last name
+    Register button
+   	Assert Register with username already in use
+
+004 Rejestracja nowego użytkownika w systemie z zajętym adresem email
 	Open main page
 	Go to registration page
     Input already in use Email
@@ -45,16 +56,6 @@ Rejestracja nowego użytkownika w systemie z zajętym adresem email
     Register button
    	Assert Register with email already in use
 
-Rejestracja nowego użytkownika w systemie z zajętą nazwą użytkownika
-	Open main page
-	Go to registration page
-    Input Email
-   	Input already in use Login
-   	Input Password
-    Input First name
-    Input Last name
-    Register button
-   	Assert Register with username already in use
 
 ***Keywords***
 
@@ -115,4 +116,6 @@ Assert Register with email already in use
 Assert Register with username already in use
 	${message}=	Get Text		//div[@class="text-danger message-col col"]
     Should Be Equal	${message}	Username is already in use.
+
+
 
