@@ -54,8 +54,7 @@ class TodoTest(BaseTestCase):
     Scenariusz : Sprawdzanie funkcjonalności Todo-dodanie nowego wpisu do  listy Todo
     """
     def test_todo_add_new_item(self):
-        # Faktyczny test
-        driver = self.driver
+        item = '011_' + self.fake.name()
         # Kroki
         # 1. Kliknij „Login”
         sign_in_link = self.get_element(
@@ -77,25 +76,28 @@ class TodoTest(BaseTestCase):
         Todo_btn = self.get_element(
             By.XPATH, '//a[@href="/todo"]')
         Todo_btn.click()
-        sleep(1)
 
-        # 5. Kliknięcie w zakładkę "Todo"        
-        # 8. Kliknij Add (dodanie do Ongoing)
         name_input = self.get_element(By.ID, "input-name")
-        name_input.send_keys("śniadanie")
+        name_input.send_keys(item)
 
         # 7. Kliknij Add
         Add_btn = self.get_element(
             By.XPATH, '//form//button[@type="submit"]')  # WebElement
         Add_btn.click()
+        sleep(1)
+        
+        # 8. Assercja
+        target = self.get_element(
+           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+        self.assertEqual(item, target.text)
+
 
     """
     ID: 012
     Scenariusz: Sprawdzanie funkcjonalności Todo-usunięcie pozycji z listy Pending
     """
     def test_todo_delate_item_from_list_pending(self):
-        # Faktyczny test
-        driver = self.driver
+        item = '012_' + self.fake.name()
         # Kroki
         # 1. Kliknij „Login”
         sign_in_link = self.get_element(
@@ -118,32 +120,32 @@ class TodoTest(BaseTestCase):
             By.XPATH, '//a[@href="/todo"]')
         Todo_btn.click()
 
-        sleep(1)
-        # 6. Wyświetlenie pola TodoApp
-        title = self.get_element(By.TAG_NAME, 'h1').text
-        expectedTitle = "Todo App"
-        self.assertEqual(title, expectedTitle)
-
         name_input = self.get_element(By.ID, "input-name")
-        name_input.send_keys("śniadanie")
+        name_input.send_keys(item)
 
         # 7. Kliknij Add
         Add_btn = self.get_element(
             By.XPATH, '//form//button[@type="submit"]')  # WebElement
         Add_btn.click()
+        sleep(1)
 
-       # 8. Usuń element z listy Pending
+        # 8. Usuń element z listy Pending
         Pending_element = self.get_element(
-            By.XPATH, '//div[@class="card-body"]//button[@type="button"][1]')  # WebElement
+            By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button[1]')  # WebElement
+        
         Pending_element.click()
+        sleep(1)
+
+        target = self.driver.find_elements(
+           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+        self.assertEqual(len(target), 0)
 
     """
     ID: 013
     Scenariusz : Przeniesienie wpisu z listy pending do ongoing
     """
     def test_move_item_from_pending_to_ongoing(self):
-        # Faktyczny test
-        driver = self.driver
+        item = '013_' + self.fake.name()
 
         # 1. Strona logowania
         sign_in_link = self.get_element(By.PARTIAL_LINK_TEXT, "Login")  # Selenium 4
@@ -167,27 +169,30 @@ class TodoTest(BaseTestCase):
         sleep(1)
 
         name_input = self.get_element(By.ID, "input-name")
-        name_input.send_keys("śniadanie")
-        
+        name_input.send_keys(item)
+
         # 7. Kliknij Add
         Add_btn = self.get_element(By.XPATH, '//form//button[@type="submit"]')  # WebElement
         Add_btn.click()
+        sleep(1)
 
-        Next_btn = self.get_clickable_element(By.CSS_SELECTOR, 'div[data-name=todo-pending-list-0]>button.next')
+        Next_btn = self.get_clickable_element(By.XPATH, 
+            '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button[2]'
+        )
         Next_btn.click()
+        sleep(1)
 
         # 8. Assercja
         target = self.get_element(
-           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]')
-        self.assertEqual("śniadanie", target.text)
+           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+        self.assertEqual(item, target.text)
 
     """
     ID: 014
     Scenariusz : Przeniesienie wpisu z listy ongoing do completed
     """
     def test_move_item_from_pending_to_ongoing(self):
-        # Faktyczny test
-        driver = self.driver
+        item = '014_' + self.fake.name()
 
         # 1. Strona logowania
         sign_in_link = self.get_element(By.PARTIAL_LINK_TEXT, "Login")  # Selenium 4
@@ -211,29 +216,34 @@ class TodoTest(BaseTestCase):
         sleep(1)
 
         name_input = self.get_element(By.ID, "input-name")
-        name_input.send_keys("śniadanie")
+        name_input.send_keys(item)
         
         # 7. Kliknij Add
         Add_btn = self.get_element(By.XPATH, '//form//button[@type="submit"]')  # WebElement
         Add_btn.click()
+        sleep(1)
 
-        Next_btn = self.get_clickable_element(By.CSS_SELECTOR, 'div[data-name=todo-pending-list-0]>button.next')
+        Next_btn = self.get_clickable_element(By.XPATH, 
+            '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button[2]')
         Next_btn.click()
-
-        Next_Completed_btn = self.get_clickable_element(By.CSS_SELECTOR, 'div[data-name=todo-ongoing-list-0]>button.next')
+        sleep(1)
+        
+        Next_Completed_btn = self.get_clickable_element(By.XPATH, 
+            '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button[3]')
         Next_Completed_btn.click()
-
+        sleep(1)
+        
         # 8. Assercja
         target = self.get_element(
-           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][3]//div[@class="todo-list-group"]')
-        self.assertEqual("śniadanie", target.text)
+           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][3]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+        self.assertEqual(item, target.text)
 
     """
     ID: 016
     Scenariusz : Umieszczenie na liście pending pozycji o tej samej nazwie
     """
     def test_add_item_to_pending_with_name_already_in_use(self):
-        faker = Faker()
+        item = '016_'  + self.fake.name();
         # Faktyczny test
         driver = self.driver
         # Kroki
@@ -265,17 +275,21 @@ class TodoTest(BaseTestCase):
         self.assertEqual(title, expectedTitle)
 
         name_input = self.get_element(By.ID, "input-name")
-        name_input.send_keys(faker.name())
+        name_input.send_keys(item)
 
         # 7. Kliknij Add
         Add_btn = self.get_element(
             By.XPATH, '//form//button[@type="submit"]')  # WebElement
         Add_btn.click()
         Add_btn.click()
+        sleep(1)
+
+        # 8. Assercja
+        target = self.driver.find_elements(
+           By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+        self.assertEqual(len(target), 2)
 
     def tearDown(self):
-        # Zakończenie testu
-        # Wyłączenie przeglądarki
         self.driver.quit()
 
 

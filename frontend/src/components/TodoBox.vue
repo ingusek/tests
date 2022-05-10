@@ -45,10 +45,10 @@
             <font-awesome-icon icon="trash" class="text-danger" @click="removeTodo(todo)" />
           </b-button>
           <b-button size="sm" class="prev" variant="link" v-if="todo.state !== 'pending'">
-            <font-awesome-icon icon="arrow-left" class="text-danger" @click="moveTodo('prev')" />
+            <font-awesome-icon icon="arrow-left" class="text-danger" @click="moveTodo('prev', todo)" />
           </b-button>
           <b-button size="sm" class="next" variant="link" v-if="todo.state !== 'completed'">
-            <font-awesome-icon icon="arrow-right" class="text-danger" @click="moveTodo('next')" />
+            <font-awesome-icon icon="arrow-right" class="text-danger" @click="moveTodo('next', todo)" />
           </b-button>
         </b-list-group-item>
       </draggable>
@@ -87,14 +87,14 @@ export default {
     removeTodo(todo) {
       this.$emit('remove', { state: this.state, todo });
     },
-    moveTodo(act) {
+    moveTodo(act, todo) {
       let state;
       if (act === 'next') {
          state = this.state === 'pending' ? 'ongoing' : 'completed';
       } else {
         state = this.state === 'completed' ? 'ongoing' : 'pending';
       }
-      this.$emit('change', { state, todoList: this.todoList });
+      this.$emit('move', { from: this.state, to: state, todo });
     }
   }
 };

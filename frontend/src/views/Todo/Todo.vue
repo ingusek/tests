@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 <template>
   <div class="page-todo">
     <b-container fluid>
@@ -14,6 +15,7 @@
             :loading="loading"
             @change="onChange"
             @remove="onRemove"
+            @move="onMove"
           />
           <todo-box
             card-header="Ongoing"
@@ -22,6 +24,7 @@
             :loading="loading"
             @change="onChange"
             @remove="onRemove"
+            @move="onMove"
           />
           <todo-box
             card-header="Completed"
@@ -30,6 +33,7 @@
             :loading="loading"
             @change="onChange"
             @remove="onRemove"
+            @move="onMove"
           />
         </b-card-group>
       </div>
@@ -82,6 +86,15 @@ export default {
     },
     onRemove({ state, todo }) {
       this.deleteOne({ state, todoId: todo.id, router: this.$router }).then(() => this.list({}));
+    },
+    onMove({ from, to , todo }) {
+      const fromList = this[`${from  }TodoList`];
+      const toList = this[`${to  }TodoList`];
+
+      toList.push(todo);
+      const fromList2 = fromList.filter(item => item.id !== todo.id);
+      this.updateBulk({ state: from, todoList: fromList2, router: this.$router }).then(() => this.list({}));
+      this.updateBulk({ state: to, todoList: toList, router: this.$router }).then(() => this.list({}));
     }
   },
   mounted() {
