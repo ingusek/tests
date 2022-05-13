@@ -1,5 +1,6 @@
 0. references/
 node_modules
+__pycache__
 build
 npm-debug.log
 .env
@@ -11,3 +12,4 @@ npm-debug.log
 **/e2e/**/*.png
 **/e2e/**/*.html
 **/e2e/**/*.xml
+*.pyc
