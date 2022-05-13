@@ -1,6 +1,5 @@
 from tests.BaseTest import BaseTest
 from tests.TestData import Settings
-from time import sleep
 
 class RegistrationTest(BaseTest):
 

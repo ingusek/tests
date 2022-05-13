@@ -29,6 +29,7 @@ class HomePageLocators():
     LogoutButton = (By.XPATH, '//a[@href="/logout"]')
     SimplePageButton = (By.PARTIAL_LINK_TEXT, 'Sample Page')
     Page2Button = (By.XPATH, '//a[@href="/sample-page/2"]')
+    TodoPageButton = (By.XPATH, '//a[@href="/todo"]')
    
 class MailHogPageLocators():
     EmailRegistrationConfirmButton = (By.PARTIAL_LINK_TEXT, 'Confirm')
@@ -56,3 +57,6 @@ class ResetPasswordPageLocators:
     RequestNewPasswordButton = (By.XPATH, '//button[@type="submit"]')   
     ResquestNewEmailText= (By.XPATH, '//div[@class="card-body"]/h1')
    
+class TodoPageLocators:
+    Title = (By.TAG_NAME, 'h1')
+

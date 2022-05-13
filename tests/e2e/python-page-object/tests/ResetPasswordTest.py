@@ -18,6 +18,8 @@ class ResetPasswordTest(BaseTest):
         reset_pasword_page.set_email(self.test_data.in_use_email)
         #4. Kliknij „żadanie nowego hasła”
         reset_pasword_page.send()
+
+        mail_page = home_page.open_email_box()
         #5. Assercja  "request new email"- assercja potwierdzenia wysłania emaila z linkiem do zmiany hasła
 
         #6. Sprawdź skrzynkę emailową pod adresem http://127.0.0.1/mailhog/

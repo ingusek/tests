@@ -1,3 +1,4 @@
+from time import sleep
 from pages.BasePage import BasePage
 from pages.Locators import HomePageLocators
 from pages.RegisterPage import RegisterPage
@@ -5,6 +6,7 @@ from pages.MailHogPage import MailHogPage
 from pages.MyAccountPage import MyAccountPage
 from pages.LoginPage import LoginPage
 from pages.Page2 import Page2
+from pages.TodoPage import TodoPage
 
 class HomePage(BasePage):
     """
@@ -65,4 +67,14 @@ class HomePage(BasePage):
         page2 = Page2(self.driver)
         return page2
         
+    """
+    """
+    def open_todo_page(self):
+        sleep(1)
+        Todo_btn = self.get_element(HomePageLocators.TodoPageButton)
+        Todo_btn.click()
+        sleep(1)
 
+        return TodoPage(
+            self.driver
+        )

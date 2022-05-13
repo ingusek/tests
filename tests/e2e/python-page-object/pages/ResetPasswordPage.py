@@ -1,6 +1,5 @@
 from pages.BasePage import BasePage
-from pages.Locators import MailHogPageLocators, ResetPasswordPageLocators
-from pages.MailHogPage import MailHogPage
+from pages.Locators import ResetPasswordPageLocators
 
 class ResetPasswordPage(BasePage):
     
@@ -9,4 +8,3 @@ class ResetPasswordPage(BasePage):
 
     def send(self):
         self.get_element(ResetPasswordPageLocators.RequestNewPasswordButton).click()
-        return MailHogPage(self.driver)
