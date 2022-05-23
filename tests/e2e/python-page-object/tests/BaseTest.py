@@ -14,8 +14,6 @@ class BaseTest(unittest.TestCase):
         self.driver.get("http://localhost/")
         self.driver.implicitly_wait(0)
 
-        # Stworzyć instancję klasy HomePage
-        # Aby uzyskać dostęp do mechanizmów tej strony
         self.home_page = HomePage(self.driver)
         self.test_data = TestData()
 

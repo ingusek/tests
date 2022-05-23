@@ -1,8 +1,11 @@
-#!/bin/sh
-export APP_URL=http://localhost/
-export MAILHOG_URL=http://localhost:8025/
-export LOGIN=ingusek
-export PASSWORD=test1234
-export EMAIL=ingus@wp.pl
-export FIRSTNAME=Jan
-export LASTNAME=Kowalski
+#!/usr/bin/env bash
+
+set -a  
+APP_URL=http://localhost/
+MAILHOG_URL=http://localhost:8025/
+LOGIN=ingusek
+PASSWORD=test1234
+EMAIL=ingus@wp.pl
+FIRSTNAME=Jan
+LASTNAME=Kowalski
+set +a

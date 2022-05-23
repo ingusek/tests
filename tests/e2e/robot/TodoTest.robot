@@ -75,6 +75,7 @@ Open main page
 
 Go to login page
 	Click Element       //a[contains(text(),'Login')]
+	Sleep	1s
 
 Input Username
 	Input Text	input-username	${USERNAME}

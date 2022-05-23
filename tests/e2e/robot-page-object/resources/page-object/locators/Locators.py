@@ -41,6 +41,14 @@ TodoPendingItem = '//div[@data-name="todo-pending-name-0"]//span'
 RemovePendingItemButton = '//div[@data-name="todo-pending-list-0"]//button'
 RemoveAssertPendingItemButton = '//div[@data-name="todo-pending-name-0"]//span[contains(text(),"${entry}")]'
 TodoAddItemInput = 'input-name'
+def MoveItemToOngiongButton(entry):
+  return '//div[@class="card-deck"]//div[@class="card mb-3"][1]//div[@class="todo-list-group"]/div//span[text()="'+entry+'"]/../../button[2]'
+def MoveItemToCompletedButton(entry):
+  return '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]/div//span[text()="'+entry+'"]/../../button[3]'
+def FindItemsInTheListCompleted(entry):
+  return '//div[@class="card-deck"]//div[@class="card mb-3"][3]//div[@class="todo-list-group"]/div//span[text()="'+entry+'"]'
+def FindItemsInTheListOngoing(entry):
+  return '//div[@class="card-deck"]//div[@class="card mb-3"][2]//div[@class="todo-list-group"]/div//span[text()="'+entry+'"]'
 
 # Reset password page locators
 RequestNewPasswordEmail = "input-email"
@@ -49,6 +57,3 @@ RequestNewPasswordSendEmailAssert = '//div[@class="card-body"]/h1'
 RequestNewPasswordOpenEmail = '//div[@class="messages container-fluid ng-scope"]/div[1]'
 RequestNewPasswordButton = "//a[contains(text(), 'Reset your password')]"
 EmailContent = "preview-html"
-
-
-

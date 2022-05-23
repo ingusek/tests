@@ -7,16 +7,16 @@ Variables  ../test-data/TestData.py
 *** Keywords ***
 
 Open page Todo
-     Click Element       ${OpenPageTodoMenu}
-	 Sleep	1s
+	Click Element       ${OpenPageTodoMenu}
+	Sleep	1s
 
 Assert Todo
 	${Todo App}=	Get Text	${TodoPageTitle}
 	Should Be Equal	${Todo App}	Todo App
 
 Add a new entry to the list Todo
-    Input Text	${TodoAddItemInput}	${entry}
-    Click Element       ${ButtonAddTodo}
+  Input Text	${TodoAddItemInput}	${entry}
+  Click Element       ${ButtonAddTodo}
 	Sleep	1s
 
 Assert a new entry to the list Todo
@@ -24,9 +24,24 @@ Assert a new entry to the list Todo
 	Should Be Equal	${new_entry}	${entry}
 
 Remove item from list Pending 
-    Click Element       ${RemovePendingItemButton}
+  Click Element			${RemovePendingItemButton}
 	Sleep	1s  
+
+Move entry from pending to ongoing
+	Click Element		${MoveItemToOngiongButton('${entry}')}
+  Sleep	1s
+
+Move entry from ongiong to completed
+	Click Element		${MoveItemToCompletedButton('${entry}')}
+  Sleep	1s
 
 Assert removing item from list Pending
 	Page Should Not Contain Element	${RemoveAssertPendingItemButton}
 
+Assert move item to the list of completed
+	${count}=	Get Element Count	${FindItemsInTheListCompleted('${entry}')}
+	Should Be True	${count} == 1
+
+Assert move item to the list of ongoing
+	${count}=	Get Element Count	${FindItemsInTheListOngoing('${entry}')}
+	Should Be True	${count} == 1

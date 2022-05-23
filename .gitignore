@@ -13,3 +13,4 @@ npm-debug.log
 **/e2e/**/*.html
 **/e2e/**/*.xml
 *.pyc
+*.png

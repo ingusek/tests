@@ -17,6 +17,11 @@ class BasePage(object):
         WebDriverWait(self.driver, 100).until(element_present)
         return self.driver.find_element(*locator)
 
+    def get_clickable_element(self, locator):
+        return WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(locator)
+        )
+
     def switch_to_frame(self, locator):
         iframe = self.get_element(locator)
         self.driver.switch_to.frame(iframe)

@@ -8,15 +8,11 @@ class ResetPasswordTest(BaseTest):
     """
     def test_reset_pasword_successful(self):
         home_page = self.home_page
-        # 1. Click Login
+
         login_page = home_page.click_login()
 
-        #2. Kliknij w opcje ”przypomnij hasło”
         reset_pasword_page = login_page.click_forgot_password()
-
-        #3. Wpisz adres email w polu „znajdź hasło”
         reset_pasword_page.set_email(self.test_data.in_use_email)
-        #4. Kliknij „żadanie nowego hasła”
         reset_pasword_page.send()
 
         mail_page = home_page.open_email_box()

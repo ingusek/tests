@@ -151,6 +151,10 @@ Selenium:
 http://localhost:7900/
 
 
+pip install robotframework
+pip install --upgrade robotframework-seleniumlibrary
+pip install robotframework-faker
+
 ## Add user
 ```
 curl --location --request POST 'http://localhost/api/user/register' \

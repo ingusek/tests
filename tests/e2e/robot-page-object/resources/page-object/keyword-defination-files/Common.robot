@@ -11,6 +11,7 @@ Opening Browser
 
 Go to login page
 	Click Element       ${LoginButton}
+    Sleep   1s
 
 Go to registration page
     Click Element       ${SingUpButton}

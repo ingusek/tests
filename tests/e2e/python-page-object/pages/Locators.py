@@ -59,4 +59,19 @@ class ResetPasswordPageLocators:
    
 class TodoPageLocators:
     Title = (By.TAG_NAME, 'h1')
+    AddItemInput = (By.ID, "input-name")
+    AddItemButton = ( By.XPATH, '//form//button[@type="submit"]')
 
+    def get_item_from_list(listNumber, item):
+        return (By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"]['+str(listNumber)+']//div[@class="todo-list-group"]/div//span[text()="'+item+'"]')
+    
+    def get_remove_button_from_list(listNumber, item):
+        return (By.XPATH, '//div[@class="card-deck"]//div[@class="card mb-3"]['+str(listNumber)+']//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button[1]')
+
+    def get_next_status_button(listNumber, item):
+        btn = '2'
+        if listNumber == 2:
+            btn = '3'
+
+        return (By.XPATH, 
+            '//div[@class="card-deck"]//div[@class="card mb-3"]['+str(listNumber)+']//div[@class="todo-list-group"]/div//span[text()="'+item+'"]/../../button['+btn+']') 
